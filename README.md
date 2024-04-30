@@ -11,8 +11,7 @@
 - [pnpm](https://pnpm.io/installation) - node package manager
 
 ```bash
-nvm install v20.12.2
-nvm use v20.12.2
+nvm use
 ```
 
 ### Install dependencies
