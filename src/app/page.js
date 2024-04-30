@@ -2,6 +2,8 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
+import ServicesSection from './_components/ServicesSection.js';
+
 const StyledMain = styled.button`
     background-color: hotpink;
     font-size: 24px;
@@ -16,7 +18,9 @@ const StyledMain = styled.button`
 export default function Home() {
     return (
         <StyledMain>
-            <div>Hello world</div>
+            <ServicesSection />
+            {/* <AboutUsSection /> */}
+            {/* <ReviewsSection /> */}
         </StyledMain>
     );
 }
