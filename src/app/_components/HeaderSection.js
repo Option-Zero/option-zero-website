@@ -48,26 +48,6 @@ const Subtitle = styled.p`
     color: var(--white);
 `;
 
-const GetStartedButton = styled.button`
-    color: var(--white);
-    background-color: var(--logo-green);
-    &:hover {
-        background-color: #32343a;
-    }
-    &:active {
-        background-color: #43464d;
-    }
-    letter-spacing: 2px;
-    text-transform: capitalize;
-    border-radius: 8px;
-    border: 0;
-    padding: 12px 25px;
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 20px;
-    transition: all 0.2s;
-`;
-
 const HeaderSection = () => {
     return (
         <>
@@ -80,7 +60,7 @@ const HeaderSection = () => {
                             We provide personalized, end-to-end software solutions and on-demand
                             consulting to power the next generation of climate tech
                         </Subtitle>
-                        <GetStartedButton> [Get Started] </GetStartedButton>
+                        <button> [Get Started] </button>
                     </HeaderContent>
                 </HeaderContainer>
             </Banner>
