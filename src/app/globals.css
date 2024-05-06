@@ -11,17 +11,17 @@ body {
   background-color: transparent;
   padding: 0;
   margin: 0;
-  font-family: montserrat;
+  font-family: Rubik, sans-serif;
   font-size: 17px;
   line-height: 28px;
+  color: var(--black);
 }
 
 h1,
 h2,
 h3,
-h4,
-h5,
-h6 {
+h4{
+  font-family: Rubik, sans-serif;
   margin-bottom: 10px;
 }
 
@@ -33,7 +33,41 @@ h1 {
   line-height: 62px;
 }
 
+ h2 {
+  margin-top: 10px;
+  font-size: 34px;
+  font-weight: 500;
+  line-height: 40px;
+}
+
+h4 {
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 30px;
+}
+
 p {
   font-weight: 300;
   margin-bottom: 24px;
+}
+
+button {
+  color: var(--white);
+  background-color: var(--logo-green);
+  &:hover {
+      background-color: #32343a;
+  }
+  &:active {
+      background-color: #43464d;
+  }
+  letter-spacing: 2px;
+  text-transform: capitalize;
+  border-radius: 8px;
+  border: 0;
+  padding: 12px 25px;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 20px;
+  transition: all 0.2s;
 }
