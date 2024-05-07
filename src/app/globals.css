@@ -1,6 +1,7 @@
 :root {
   --logo-green: #27d374;
   --white: white;
+  --cream: #f0f1f2;
   --black: #161413;
   --dark-blue: #062f40;
   --dark-grey: #646f79;
@@ -49,6 +50,8 @@ h4 {
 
 p {
   font-weight: 300;
+  font-size: 15px;
+  line-height: 26px;
   margin-bottom: 24px;
 }
 
