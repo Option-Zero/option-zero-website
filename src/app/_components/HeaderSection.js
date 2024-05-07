@@ -2,17 +2,16 @@ import React from 'react';
 import styled from '@emotion/styled';
 
 const Banner = styled.div`
-    alt: "Green mountain range";
-    position: relative;
     display: block;
-    background-image: url("/HeaderBackground.png");
-    background-position: 50% 80%;
-    background-repeat: repeat, no-repeat;
-    background-size: auto, cover;
-    background-attachment: scroll, scroll;
-    background-clip: border-box;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
     padding: 20px 80px 20px 30px;
     min-height: 0px;
+    box-sizing: border-box;
+    background-image: url("/HeaderBackground.png");
+    background-position: 50% 80%;
+    background-clip: border-box;
     }
 `;
 
@@ -20,6 +19,7 @@ const HeaderContainer = styled.div`
     display: block;
     max-width: 1200px;
     aspect-ratio: auto;
+    box-sizing: border-box;
 `;
 
 const HeaderContent = styled.div`
@@ -27,14 +27,15 @@ const HeaderContent = styled.div`
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-    margin-top: 50px;
-    max-width: 50%;
+    margin-top: 60px;
+    max-width: 60%;
+    min-width: 0;
+    box-sizing: border-box;
 `;
 
 const Title = styled.h1`
     padding-top: 20px;
     padding-bottom: 25px;
-    min-width: 620px;
     color: var(--white);
     letter-spacing: -2px;
     font-family: Rubik, sans-serif;
@@ -42,6 +43,9 @@ const Title = styled.h1`
     font-weight: 400;
     line-height: 80px;
     display: flex;
+    box-sizing: border-box;
+    text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
 `;
 
 const Subtitle = styled.p`
