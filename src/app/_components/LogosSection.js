@@ -1,7 +1,7 @@
 import React from 'react';
 
 import styled from '@emotion/styled';
-import { Grid } from '@mui/material';
+import { Box, Grid } from '@mui/material';
 
 // would be nice to read the filenames from public/logos but
 // it's confusing and not 80/20
@@ -9,10 +9,6 @@ const LOGOS = [
     {
         filename: 'logos/COMMONS-logo.png',
         alt: 'Commons logo',
-    },
-    {
-        filename: 'logos/CYLogo.png',
-        alt: 'Carbon Yield logo',
     },
     {
         filename: 'logos/doterra-logo.svg',
@@ -27,10 +23,6 @@ const LOGOS = [
         alt: 'Freight Farms logo',
     },
     {
-        filename: 'logos/hitag-logo.png',
-        alt: 'HiTag logo',
-    },
-    {
         filename: 'logos/NYState-logo.png',
         alt: 'New York State logo',
     },
@@ -38,43 +30,67 @@ const LOGOS = [
         filename: 'logos/power-dcity-logo.png',
         alt: 'Power-d City logo',
     },
+    {
+        filename: 'logos/CYLogo.png',
+        alt: 'Carbon Yield logo',
+    },
+    {
+        filename: 'logos/hitag-logo.png',
+        alt: 'HiTag logo',
+    },
 ];
 
 const LogoImg = ({ className, url, alt }) => {
     return <img className={className} src={url} alt={alt}></img>;
 };
 
-const StyledLogo = styled(LogoImg)`
-    width: 50%;
+const StyledLogoImg = styled(LogoImg)`
+    width: 60%;
     height: auto;
     object-fit: cover;
     filter: grayscale(100%);
+    opacity: 0.5;
 `;
 
 const StyledGridContainer = styled.div`
-    margin: 100px;
+    justify-content: center;
+    @media (max-width: 600px) {
+        margin: 40px 5%;
+    }
+    @media (max-width: 900px) {
+        margin: 40px 10%;
+    }
+    @media (min-width: 901px) {
+        margin: 40px 15%;
+    }
+`;
+
+const StyledTitle = styled.h4`
+    color: var(--dark-grey);
+    text-align: center;
+    text-transform: uppercase;
 `;
 
 const LogosSection = () => {
     return (
-        <div>
-            <h2>Past Clients</h2>
+        <>
+            <StyledTitle>Past Clients</StyledTitle>
             <StyledGridContainer>
-                <Grid
-                    container
-                    justifyContent="center"
-                    alignItems="center"
-                    spacing={{ xs: 2, md: 3 }}
-                    columns={{ xs: 4, sm: 8, md: 12 }}
-                >
+                <Grid container spacing={2} justifyContent="center" alignItems="center">
                     {LOGOS.map((logo, index) => (
-                        <Grid item xs={2} sm={4} md={3} key={index}>
-                            <StyledLogo key={index} url={logo.filename} alt={logo.alt}></StyledLogo>
+                        <Grid item xs={6} sm={4} lg={3} key={index} justifyContent="center">
+                            <Box display="flex" justifyContent="center">
+                                <StyledLogoImg
+                                    key={index}
+                                    url={logo.filename}
+                                    alt={logo.alt}
+                                ></StyledLogoImg>
+                            </Box>
                         </Grid>
                     ))}
                 </Grid>
             </StyledGridContainer>
-        </div>
+        </>
     );
 };
 
