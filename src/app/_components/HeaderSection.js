@@ -1,17 +1,22 @@
 import React from 'react';
+
 import styled from '@emotion/styled';
 
 const Banner = styled.div`
     display: block;
-    align-items: center;
+    align-items: flex-start;
     justify-content: flex-start;
     position: relative;
-    padding: 20px 80px 20px 30px;
+    padding-bottom: 80px;
+    padding-right: 20px;
+    padding-left: 20px;
+    padding-top: 30px;
     min-height: 0px;
     box-sizing: border-box;
     background-image: url("/HeaderBackground.png");
     background-position: 50% 80%;
     background-clip: border-box;
+    background-size: auto, cover;
     }
 `;
 
@@ -28,9 +33,11 @@ const HeaderContent = styled.div`
     align-items: flex-start;
     justify-content: flex-start;
     margin-top: 60px;
-    max-width: 60%;
     min-width: 0;
-    box-sizing: border-box;
+    max-width: 480px;
+    @media screen and (min-width: 800px) {
+        max-width: 60%;
+    }
 `;
 
 const Title = styled.h1`
