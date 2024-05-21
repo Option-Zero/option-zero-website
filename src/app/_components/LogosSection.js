@@ -53,7 +53,7 @@ const StyledGridContainer = styled.div`
 `;
 
 const StyledTitle = styled.h4`
-    color: var(--dark-grey);
+    color: var(--medium-grey);
     text-align: center;
     text-transform: uppercase;
     margin-bottom: 30px;

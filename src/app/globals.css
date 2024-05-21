@@ -4,8 +4,12 @@
   --cream: #f0f1f2;
   --black: #161413;
   --dark-blue: #062f40;
-  --dark-grey: #646f79;
+  --light-grey: #f0f1f2;
+  --medium-grey: #646f79;
+  --dark-grey: #32343a;
   --error-red: #ff6161;
+
+  --page-width: 1200px;
 }
 
 body {
@@ -59,10 +63,10 @@ button {
   color: var(--white);
   background-color: var(--logo-green);
   &:hover {
-      background-color: #32343a;
+      background-color: var(--dark-grey);
   }
   &:active {
-      background-color: #43464d;
+      background-color: var(--medium-grey);
   }
   letter-spacing: 2px;
   text-transform: capitalize;

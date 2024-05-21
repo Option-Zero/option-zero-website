@@ -6,7 +6,7 @@ const ServiceCardDescription = styled.p`
     font-size: 15px;
     font-weight: 300;
     line-height: 26px;
-    color: var(--dark-grey);
+    color: var(--medium-grey);
     margin-bottom: 10px;
 `;
 

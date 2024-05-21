@@ -9,17 +9,18 @@ import ReviewsSection from './_components/ReviewsSection.js';
 import LogosSection from './_components/LogosSection.js';
 import ContactUsSection from './_components/ContactUsSection.js';
 
-const StyledMain = styled.body``;
+// const StyledMain = styled.body`
+// `;
 
 export default function Home() {
     return (
-        <StyledMain>
+        <>
             <HeaderSection />
             <ServicesSection />
             <AboutUsSection />
             <ReviewsSection />
             <LogosSection />
             <ContactUsSection />
-        </StyledMain>
+        </>
     );
 }

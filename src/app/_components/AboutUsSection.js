@@ -1,31 +1,35 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
+const StyledSectionWrapper = styled.div`
+    background-color: var(--cream);
+    display: flex;
+    justify-content: center;
+    position: relative;
+    padding: 80px 30px;
+`;
+
 const AboutUsContainer = styled.div`
     display: flex;
-    flex-wrap: wrap;
-    padding: 80px 30px;
-    background-color: var(--cream);
-    position: relative;
-    box-sizing: border-box;
-    border: 0;
     justify-content: space-between;
-    gap: 15px;
+    gap: 30px;
+    max-width: var(--page-width);
+    @media screen and (max-width: 800px) {
+        flex-wrap: wrap;
+    }
 `;
 
 const ColoredButton = styled.button`
-    background-color: var(--cream);
+    background-color: transparent;
     color: var(--logo-green);
     padding: 0;
     &:hover {
-        color: #32343a;
+        color: var(--dark-grey);
         background-color: var(--cream);
     }
 `;
 
-// i regret my button refactoring choices
-const JnJPortrait = styled.button`
-    position: relative;
+const JnJPortrait = styled.div`
     display: block;
     background-image: url('/2023_1_19_JasonandjamieportraitVegas-7.jpg');
     background-position: 0 0;
@@ -38,32 +42,28 @@ const JnJPortrait = styled.button`
     min-height: 300px;
     max-height: 400px;
     margin-bottom: 40px;
-    margin: auto;
     &:hover {
         background-image: url('/2023_1_19_JasonandjamieportraitVegas-11.jpg');
     }
 `;
 
-const AboutUsTextContainer = styled.div`
-    max-width: 50%;
-`;
-
 const AboutUsSection = () => {
     return (
-        <AboutUsContainer>
-            <JnJPortrait></JnJPortrait>
-            <AboutUsTextContainer>
-                <h2> About Us </h2>
-                <p>
-                    {' '}
-                    We are Jason and Jaime Curtis, a husband and wife team. We've built on our
-                    combined 20+ years of experience in software and climate solutions to launch
-                    Option Zero, the software consultancy for climate companies & initiatives.
-                </p>
-                <p>If your mission is climate resilience, your mission is our mission.</p>
-                <ColoredButton> [ Work With Us ]</ColoredButton>
-            </AboutUsTextContainer>
-        </AboutUsContainer>
+        <StyledSectionWrapper>
+            <AboutUsContainer>
+                <JnJPortrait></JnJPortrait>
+                <div>
+                    <h2> About Us </h2>
+                    <p>
+                        We are Jason and Jaime Curtis, a husband and wife team. We've built on our
+                        combined 20+ years of experience in software and climate solutions to launch
+                        Option Zero, the software consultancy for climate companies & initiatives.
+                    </p>
+                    <p>If your mission is climate resilience, your mission is our mission.</p>
+                    <ColoredButton> [ Work With Us ]</ColoredButton>
+                </div>
+            </AboutUsContainer>
+        </StyledSectionWrapper>
     );
 };
 

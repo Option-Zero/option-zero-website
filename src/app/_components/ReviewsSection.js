@@ -1,10 +1,12 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 
-import Carousel from 'react-material-ui-carousel';
-
+import Slider from 'react-slick';
 import styled from '@emotion/styled';
-import { Card } from '@mui/material';
+
+//required for Slider component to function properly
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 const REVIEWS = [
     {
@@ -48,70 +50,78 @@ const Portrait = styled.img`
     border-radius: 30px;
 `;
 
-const ReviewCard = styled(Card)(() => ({
-    justifyContent: 'center',
-    alignItems: 'center',
-    margin: '0 60px',
-    padding: '30px',
-}));
+const ReviewerNameContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 10px;
+    padding: 0;
+    //min-width: 100%;
+`;
 
 const ReviewerInfoContainer = styled.div`
     display: flex;
     align-items: center;
+    align-self: flex-end;
     min-height: 100%;
-`;
-
-const ReviewerNameContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    min-width: 100%;
-    margin: 0 10px;
-    padding: 0;
-`;
-
-const CarouselContainer = styled.div`
-    display: flex;
+    width: auto;
+    space-between: 10px;
     justify-content: center;
-    align-items: center;
-    min-height: 600px;
 `;
 
-const StyledCarousel = styled(Carousel)(() => ({
-    alignItems: 'center',
-    width: '500px',
-}));
+const StyledSlider = styled(Slider)`
+    height: fit-content
+    padding: 50px 15vw;
+`;
 
-//I would love to know how to move the Carousel props to another const but 80/20
+const ReviewCard = styled.div`
+    width: 300px;
+    max-width: 300px;
+    padding: 20px;
+    height: 300px;
+    border-width: 8px;
+    border-color: black;
+`;
+
+const SliderArrow = styled.div`
+    position: relative;
+    padding: 5px;
+    margin: 30px auto;
+    background: #000;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    transition: all 0.2s linear;
+`;
+
 const ReviewsSection = () => {
+    const sliderSettings = {
+        speed: 1000,
+        adaptiveHeight: false,
+        infinite: true,
+        variableWidth: true,
+        nextArrow: <SliderArrow />,
+        prevArrow: <SliderArrow />,
+    };
     return (
-        <CarouselContainer>
-            <StyledCarousel
-                autoPlay={false}
-                animation="slide"
-                navButtonsProps={{
-                    style: {
-                        padding: '10px', // 1
-                        color: 'blue', // 3
-                        opacity: '0.2',
-                    },
-                }}
-            >
-                {REVIEWS.map((review, i) => (
+        <StyledSlider {...sliderSettings}>
+            {REVIEWS.map((review, i) => {
+                return (
                     <ReviewCard key={i}>
-                        <p>{review.review}</p>
+                        <p style={{ padding: '0 20px' }}>{review.review}</p>
                         <ReviewerInfoContainer>
-                            {review.portrait.map((image, j) => (
-                                <Portrait key={j} src={image} alt={review.name}></Portrait>
-                            ))}
+                            {review.portrait.map((image, j) => {
+                                return <Portrait key={j} src={image} alt={review.name}></Portrait>;
+                            })}
                             <ReviewerNameContainer>
-                                <h2>{review.name}</h2>
+                                <h2 style={{ margin: 0 }}>{review.name}</h2>
                                 <p style={{ margin: 0 }}>{review.position}</p>
                             </ReviewerNameContainer>
                         </ReviewerInfoContainer>
                     </ReviewCard>
-                ))}
-            </StyledCarousel>
-        </CarouselContainer>
+                );
+            })}
+        </StyledSlider>
     );
 };
 

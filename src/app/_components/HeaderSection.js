@@ -6,11 +6,7 @@ const Banner = styled.div`
     display: block;
     align-items: flex-start;
     justify-content: flex-start;
-    position: relative;
-    padding-bottom: 80px;
-    padding-right: 20px;
-    padding-left: 20px;
-    padding-top: 30px;
+    padding: 30px 20px 80px;
     min-height: 0px;
     box-sizing: border-box;
     background-image: url("/HeaderBackground.png");
@@ -21,10 +17,16 @@ const Banner = styled.div`
 `;
 
 const HeaderContainer = styled.div`
-    display: block;
-    max-width: 1200px;
-    aspect-ratio: auto;
+    display: flex;
+    max-width: var(--page-width);
     box-sizing: border-box;
+    justify-content: center;
+    margin-top: 60px;
+    margin: auto;
+    //     @media screen and (min-width: 800px) {
+    //         max-width: 60%;
+    //     }
+    //
 `;
 
 const HeaderContent = styled.div`
@@ -32,12 +34,7 @@ const HeaderContent = styled.div`
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-    margin-top: 60px;
     min-width: 0;
-    max-width: 480px;
-    @media screen and (min-width: 800px) {
-        max-width: 60%;
-    }
 `;
 
 const Title = styled.h1`
@@ -61,21 +58,19 @@ const Subtitle = styled.p`
 
 const HeaderSection = () => {
     return (
-        <>
-            <Banner>
-                <HeaderContainer>
-                    {/* <NavBar></NavBar> */}
-                    <HeaderContent>
-                        <Title>Modern software for climate tech</Title>
-                        <Subtitle>
-                            We provide personalized, end-to-end software solutions and on-demand
-                            consulting to power the next generation of climate tech
-                        </Subtitle>
-                        <button> [Get Started] </button>
-                    </HeaderContent>
-                </HeaderContainer>
-            </Banner>
-        </>
+        <Banner>
+            <HeaderContainer>
+                {/* <NavBar></NavBar> */}
+                <HeaderContent>
+                    <Title>Modern software for climate tech</Title>
+                    <Subtitle>
+                        We provide personalized, end-to-end software solutions and on-demand
+                        consulting to power the next generation of climate tech
+                    </Subtitle>
+                    <button> [Get Started] </button>
+                </HeaderContent>
+            </HeaderContainer>
+        </Banner>
     );
 };
 
