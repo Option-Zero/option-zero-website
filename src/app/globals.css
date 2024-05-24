@@ -1,44 +1,36 @@
-:root {
-  --logo-green: #27d374;
-  --white: white;
-  --cream: #f0f1f2;
-  --black: #161413;
-  --dark-blue: #062f40;
-  --light-grey: #f0f1f2;
-  --medium-grey: #646f79;
-  --dark-grey: #32343a;
-  --error-red: #ff6161;
-
-  --page-width: 1200px;
-}
-
-body {
+html, body {
   background-color: transparent;
   padding: 0;
   margin: 0;
-  font-family: Rubik, sans-serif;
   font-size: 17px;
   line-height: 28px;
-  color: var(--black);
+  color: black;
 }
 
 h1,
 h2,
 h3,
 h4{
-  font-family: Rubik, sans-serif;
   margin-bottom: 10px;
 }
 
 h1 {
-  margin-top: 20px;
-  margin-bottom: 15px;
-  font-size: 44px;
+  padding: 0;
+  margin: 0;
+  font-size: 78px;
   font-weight: 400;
-  line-height: 62px;
+  line-height: 80px;
+  letter-spacing: -2px;
 }
 
- h2 {
+h2 {
+  font-size: 50px;
+  font-weight: 500;
+  line-height: 62px;
+  margin: 0;
+}
+
+h3 {
   margin-top: 10px;
   font-size: 34px;
   font-weight: 500;
@@ -66,21 +58,20 @@ p {
 .slick-arrow.slick-next,
 .slick-arrow.slick-prev {
   padding: 5px;
-  background: var(--light-grey);
-  height: 40px;
-  width: 40px;
+  background: transparent;
+  height: 30px;
+  width: 30px;
   border-radius: 50%;
   transition: all 0.2s linear;
   opacity: 0.8;
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
 
 .slick-arrow.slick-next:hover,
 .slick-arrow.slick-prev:hover {
-    background-color: var(--medium-grey);
+    background-color: #f0f1f2; /* light grey */
     opacity:1;
 }
 

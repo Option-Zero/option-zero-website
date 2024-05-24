@@ -2,6 +2,8 @@ import React from 'react';
 
 import styled from '@emotion/styled';
 import { Box, Grid } from '@mui/material';
+import { Medium_grey } from '../Styles/Colors';
+import { SectionBackground, SectionContent } from './SharedComponents';
 
 // would be nice to read the filenames from public/logos but
 // it's confusing and not 80/20
@@ -38,25 +40,10 @@ const StyledLogoImg = styled(LogoImg)`
     opacity: 0.5;
 `;
 
-const StyledGridContainer = styled.div`
-    justify-content: center;
-    @media (max-width: 600px) {
-        margin-inline: 5%;
-    }
-    @media (max-width: 900px) {
-        margin-inline: 10%;
-    }
-    @media (min-width: 901px) {
-        margin-inline: 15%;
-    }
-`;
-
 const StyledTitle = styled.h4`
-    color: var(--medium-grey);
-    text-align: center;
+    color: ${Medium_grey};
     text-transform: uppercase;
-    margin-top: 50px;
-    margin-bottom: 30px;
+    padding-bottom: 30px;
 `;
 
 // To change the layout of the items in the grid, look for
@@ -65,8 +52,8 @@ const StyledTitle = styled.h4`
 // The value represents the number of columns out of 12 that each item should take up
 const LogosSection = () => {
     return (
-        <>
-            <StyledGridContainer>
+        <SectionBackground>
+            <SectionContent column padding>
                 <StyledTitle>Past Clients</StyledTitle>
                 <Grid container spacing={2} justifyContent="center" alignItems="center">
                     {CLIENTLOGOS.map((logo, index) => (
@@ -81,9 +68,9 @@ const LogosSection = () => {
                         </Grid>
                     ))}
                 </Grid>
-            </StyledGridContainer>
-            <StyledTitle>Past Employers</StyledTitle>
-            <StyledGridContainer>
+            </SectionContent>
+            <SectionContent column padding style={{ paddingTop: 0 }}>
+                <StyledTitle>Past Employers</StyledTitle>
                 <Grid container spacing={2} justifyContent="center" alignItems="center">
                     {EMPLOYERLOGOS.map((logo, index) => (
                         <Grid item xs={6} sm={4} lg={4} key={index} justifyContent="center">
@@ -97,8 +84,8 @@ const LogosSection = () => {
                         </Grid>
                     ))}
                 </Grid>
-            </StyledGridContainer>
-        </>
+            </SectionContent>
+        </SectionBackground>
     );
 };
 

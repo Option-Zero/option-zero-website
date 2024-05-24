@@ -1,13 +1,12 @@
 import React from 'react';
 
 import styled from '@emotion/styled';
-import { AnchorButton } from './SharedComponents.js';
+import { AnchorButton, SectionContent } from './SharedComponents.js';
+import { PAGE_WIDTH } from '../Styles/Styles.js';
+import { Medium_grey } from '../Styles/Colors.js';
 
 const ServiceCardDescription = styled.p`
-    font-size: 15px;
-    font-weight: 300;
-    line-height: 26px;
-    color: var(--medium-grey);
+    color: ${Medium_grey};
     margin-bottom: 10px;
 `;
 
@@ -21,6 +20,8 @@ const ServiceCard = ({ className, title, description, icon }) => {
     );
 };
 
+// thinking about adding a middle breakpoint to either fit 4 across or switch to 2x2 early
+// it looks weird with 3 and 1
 const StyledServiceCard = styled(ServiceCard)`
     width: 275px;
     height: 325px;
@@ -36,26 +37,16 @@ const StyledServiceCard = styled(ServiceCard)`
     padding: 20px;
 `;
 
-const ServiceCardContainer = styled.div`
-    display: flex;
+const ServiceCardContainer = styled(SectionContent)`
     flex-wrap: wrap;
-    justify-content: center;
     margin-top: 20px;
     margin-bottom: 40px;
 `;
 
 const ServicesSectionDescription = styled.p`
     text-align: center;
-    max-width: 700px;
+    max-width: ${PAGE_WIDTH * 0.5}px;
     font-weight: 400;
-`;
-
-const StyledServicesSection = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 100px 0px;
 `;
 
 const SERVICES = [
@@ -87,8 +78,8 @@ const SERVICES = [
 
 const ServicesSection = () => {
     return (
-        <StyledServicesSection>
-            <h2> What We Do </h2>
+        <SectionContent column padding>
+            <h3> What We Do </h3>
             <ServicesSectionDescription>
                 We do software strategy, implementation, data foundations, and team-building for
                 companies making a difference on climate change
@@ -104,7 +95,7 @@ const ServicesSection = () => {
                 ))}
             </ServiceCardContainer>
             <AnchorButton> [ Work With Us ] </AnchorButton>
-        </StyledServicesSection>
+        </SectionContent>
     );
 };
 

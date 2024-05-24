@@ -1,20 +1,30 @@
 import styled from '@emotion/styled';
+import { PAGE_WIDTH, SECTION_PADDING } from '../Styles/Styles.js';
+import { Dark_grey, Logo_green, Medium_grey } from '../Styles/Colors.js';
 
-const SectionWrapper = styled.div`
-    display: flex;
-    justify-content: center;
-    max-width: 100vw;
-    min-width: var(--page-width);
-`;
+export const SectionBackground = styled.div((props) => ({
+    boxSizing: 'border-box',
+    display: 'block',
+    padding: props.padding ? SECTION_PADDING : 0,
+}));
 
-const AnchorButton = styled.button`
-    color: var(--white);
-    background-color: var(--logo-green);
+export const SectionContent = styled.div((props) => ({
+    display: 'flex',
+    flexDirection: props.column && 'column',
+    padding: props.padding ? SECTION_PADDING : 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+    maxWidth: PAGE_WIDTH,
+}));
+
+export const AnchorButton = styled.button`
+    color: white;
+    background-color: ${Logo_green};
     &:hover {
-        background-color: var(--dark-grey);
+        background-color: ${Dark_grey};
     }
     &:active {
-        background-color: var(--medium-grey);
+        background-color: ${Medium_grey};
     }
     letter-spacing: 2px;
     text-transform: capitalize;
@@ -26,4 +36,3 @@ const AnchorButton = styled.button`
     line-height: 20px;
     transition: all 0.2s;
 `;
-export { AnchorButton, SectionWrapper };

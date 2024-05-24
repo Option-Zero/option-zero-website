@@ -1,27 +1,27 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import { AnchorButton, SectionBackground } from './SharedComponents.js';
+import { Cream, Dark_grey, Logo_green } from '../Styles/Colors.js';
 import { Container } from '@mui/material';
-import { AnchorButton } from './SharedComponents.js';
 
 const AboutUsContainer = styled(Container)`
     display: flex;
+    align-items: flex-start; /*not sure how i feel about this*/
     justify-content: space-between;
     gap: 40px;
-    padding: 80px 30px;
-    max-width: var(--page-width);
     @media screen and (max-width: 800px) {
         flex-wrap: wrap;
         justify-content: center;
     }
 `;
 
-const ColoredButton = styled(AnchorButton)`
+const StyledAnchorButton = styled(AnchorButton)`
     background-color: transparent;
-    color: var(--logo-green);
+    color: ${Logo_green};
     padding: 0;
     &:hover {
-        color: var(--dark-grey);
-        background-color: var(--cream);
+        color: ${Dark_grey};
+        background-color: ${Cream};
     }
 `;
 
@@ -37,7 +37,6 @@ const JnJPortrait = styled.div`
     height: auto;
     min-height: 300px;
     max-height: 400px;
-    margin-bottom: 40px;
     &:hover {
         background-image: url('/2023_1_19_JasonandjamieportraitVegas-11.jpg');
     }
@@ -45,21 +44,21 @@ const JnJPortrait = styled.div`
 
 const AboutUsSection = () => {
     return (
-        <div style={{ backgroundColor: '#f0f1f2' }}>
+        <SectionBackground padding style={{ backgroundColor: '#f0f1f2' }}>
             <AboutUsContainer>
                 <JnJPortrait></JnJPortrait>
                 <div>
-                    <h2> About Us </h2>
+                    <h3> About Us </h3>
                     <p>
                         We are Jason and Jaime Curtis, a husband and wife team. We've built on our
                         combined 20+ years of experience in software and climate solutions to launch
                         Option Zero, the software consultancy for climate companies & initiatives.
                     </p>
                     <p>If your mission is climate resilience, your mission is our mission.</p>
-                    <ColoredButton> [ Work With Us ]</ColoredButton>
+                    <StyledAnchorButton> [ Work With Us ]</StyledAnchorButton>
                 </div>
             </AboutUsContainer>
-        </div>
+        </SectionBackground>
     );
 };
 

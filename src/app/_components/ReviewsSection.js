@@ -7,6 +7,7 @@ import styled from '@emotion/styled';
 //required for Slider component to function properly
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { SectionBackground, SectionContent } from './SharedComponents';
 
 const REVIEWS = [
     {
@@ -49,9 +50,9 @@ const reviewCardStyles = {
     padding: 20,
 };
 const cardCount = 2;
-const sliderPadding = 50;
+const arrowsOffset = 50;
 const sliderWidth =
-    (reviewCardStyles.width + reviewCardStyles.padding * 2) * cardCount + sliderPadding * 2;
+    (reviewCardStyles.width + reviewCardStyles.padding * 2) * cardCount + arrowsOffset * 2;
 
 const Portrait = styled.img`
     width: 60px;
@@ -86,19 +87,22 @@ const ReviewCard = styled.div`
 
 const StyledSlider = styled(Slider)`
     width: ${sliderWidth}px;
-    margin: 50px 0;
-    padding: 0 ${sliderPadding}px;
+    margin: 0;
+    padding: 0 ${arrowsOffset}px;
 `;
 
 function SliderArrow(props) {
     const { className, onClick, src, alt } = props;
     return (
         <div onClick={onClick} className={`arrow ${className}`}>
+            {/**I do not understand how this works */}
             <img src={src} alt={alt} />
         </div>
     );
 }
 
+// still need to figure out breakpoints for this
+// kinda have a setup with cardNumber
 const ReviewsSection = () => {
     const sliderSettings = {
         speed: 1000,
@@ -110,46 +114,43 @@ const ReviewsSection = () => {
     };
 
     return (
-        <div
-            style={{
-                display: 'flex',
-                flexDirection: 'column',
-                width: '100%',
-                justifyContent: 'center',
-                alignItems: 'center',
-                marginTop: '50px',
-            }}
-        >
-            <h2> Reviews </h2>
-            <StyledSlider {...sliderSettings}>
-                {REVIEWS.map((review, i) => {
-                    return (
-                        <ReviewCard key={i}>
-                            <p
-                                style={{
-                                    padding: '0 20px',
-                                    fontStyle: 'italic',
-                                    alignSelf: 'flex-start',
-                                }}
-                            >
-                                {review.review}
-                            </p>
-                            <ReviewerInfoContainer>
-                                {review.portrait.map((image, j) => {
-                                    return (
-                                        <Portrait key={j} src={image} alt={review.name}></Portrait>
-                                    );
-                                })}
-                                <ReviewerNameContainer>
-                                    <h3 style={{ margin: 0 }}>{review.name}</h3>
-                                    <p style={{ margin: 0 }}>{review.position}</p>
-                                </ReviewerNameContainer>
-                            </ReviewerInfoContainer>
-                        </ReviewCard>
-                    );
-                })}
-            </StyledSlider>
-        </div>
+        <SectionBackground padding>
+            <SectionContent column>
+                <h3> Reviews </h3>
+                <StyledSlider {...sliderSettings}>
+                    {REVIEWS.map((review, i) => {
+                        return (
+                            <ReviewCard key={i}>
+                                <p
+                                    style={{
+                                        padding: '0 20px',
+                                        fontStyle: 'italic',
+                                        alignSelf: 'flex-start',
+                                    }}
+                                >
+                                    {review.review}
+                                </p>
+                                <ReviewerInfoContainer>
+                                    {review.portrait.map((image, j) => {
+                                        return (
+                                            <Portrait
+                                                key={j}
+                                                src={image}
+                                                alt={review.name}
+                                            ></Portrait>
+                                        );
+                                    })}
+                                    <ReviewerNameContainer>
+                                        <h3 style={{ margin: 0 }}>{review.name}</h3>
+                                        <p style={{ margin: 0 }}>{review.position}</p>
+                                    </ReviewerNameContainer>
+                                </ReviewerInfoContainer>
+                            </ReviewCard>
+                        );
+                    })}
+                </StyledSlider>
+            </SectionContent>
+        </SectionBackground>
     );
 };
 
