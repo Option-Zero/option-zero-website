@@ -1,25 +1,21 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import { Container } from '@mui/material';
+import { AnchorButton } from './SharedComponents.js';
 
-const StyledSectionWrapper = styled.div`
-    background-color: var(--cream);
-    display: flex;
-    justify-content: center;
-    position: relative;
-    padding: 80px 30px;
-`;
-
-const AboutUsContainer = styled.div`
+const AboutUsContainer = styled(Container)`
     display: flex;
     justify-content: space-between;
-    gap: 30px;
+    gap: 40px;
+    padding: 80px 30px;
     max-width: var(--page-width);
     @media screen and (max-width: 800px) {
         flex-wrap: wrap;
+        justify-content: center;
     }
 `;
 
-const ColoredButton = styled.button`
+const ColoredButton = styled(AnchorButton)`
     background-color: transparent;
     color: var(--logo-green);
     padding: 0;
@@ -49,7 +45,7 @@ const JnJPortrait = styled.div`
 
 const AboutUsSection = () => {
     return (
-        <StyledSectionWrapper>
+        <div style={{ backgroundColor: '#f0f1f2' }}>
             <AboutUsContainer>
                 <JnJPortrait></JnJPortrait>
                 <div>
@@ -63,7 +59,7 @@ const AboutUsSection = () => {
                     <ColoredButton> [ Work With Us ]</ColoredButton>
                 </div>
             </AboutUsContainer>
-        </StyledSectionWrapper>
+        </div>
     );
 };
 

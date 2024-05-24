@@ -10,28 +10,16 @@ import 'slick-carousel/slick/slick-theme.css';
 
 const REVIEWS = [
     {
-        name: 'James Regulinski',
-        position: 'CTO, Carbon Collective',
-        portrait: ['reviewers/JamesRegulinski.jpeg'],
-        review: 'Jaime and Jason are a stellar team. They were instrumental in building and running our highly collaborative team and kept us laser-focused on our top strategic priorities. If you want a team to help you figure out where you need to go and get you there fast, you want Jaime and Jason.',
-    },
-    {
         name: 'Nick Reavill',
         position: 'CTO, Commons',
         portrait: ['reviewers/NickReavill.jpeg'],
-        review: 'We hired Option Zero to clean up our python data pipeline. They delivered exactly what I wanted - the codebase is less terrifying now! They required minimal oversight, operated as an independent unit, and communicated their work clearly and concisely.',
+        review: '"We hired Option Zero to clean up our python data pipeline. They delivered exactly what I wanted - the codebase is less terrifying now! They required minimal oversight, operated as an independent unit, and communicated their work clearly and concisely."',
     },
     {
         name: 'Shannon Bloemker',
         position: 'CEO, Energy Raven',
         portrait: ['reviewers/ShannonBloemker.jpeg'],
         review: '"Option Zero didn’t just fulfill our immediate software needs; they equipped us to thrive independently. I highly recommend them to anyone in the climate space looking for a reliable, mission aligned, and adaptable technical partner. Their contribution was a key factor in our success, and I’m so glad we found them."',
-    },
-    {
-        name: 'Tom Abeles',
-        position: 'CEO, Uprope',
-        portrait: ['reviewers/TomAbeles.jpeg'],
-        review: 'Jason is...perhaps the strongest developer I have worked with.',
     },
     {
         name: 'Sam & Claire',
@@ -42,7 +30,28 @@ const REVIEWS = [
         rather they helped us create a road map for future development that give us as \
         founders confidence that we can navigate the growth and further development of our platform."',
     },
+    {
+        name: 'James Regulinski',
+        position: 'CTO, Carbon Collective',
+        portrait: ['reviewers/JamesRegulinski.jpeg'],
+        review: 'Jaime and Jason are a stellar team. They were instrumental in building and running our highly collaborative team and kept us laser-focused on our top strategic priorities. If you want a team to help you figure out where you need to go and get you there fast, you want Jaime and Jason.',
+    },
+    {
+        name: 'Tom Abeles',
+        position: 'CEO, Uprope',
+        portrait: ['reviewers/TomAbeles.jpeg'],
+        review: '"Jason is...perhaps the strongest developer I have worked with."',
+    },
 ];
+
+const reviewCardStyles = {
+    width: 350,
+    padding: 20,
+};
+const cardCount = 2;
+const sliderPadding = 50;
+const sliderWidth =
+    (reviewCardStyles.width + reviewCardStyles.padding * 2) * cardCount + sliderPadding * 2;
 
 const Portrait = styled.img`
     width: 60px;
@@ -56,43 +65,39 @@ const ReviewerNameContainer = styled.div`
     justify-content: center;
     margin: 0 10px;
     padding: 0;
-    //min-width: 100%;
 `;
 
 const ReviewerInfoContainer = styled.div`
     display: flex;
     align-items: center;
     align-self: flex-end;
-    min-height: 100%;
-    width: auto;
-    space-between: 10px;
-    justify-content: center;
-`;
-
-const StyledSlider = styled(Slider)`
-    height: fit-content
-    padding: 50px 15vw;
+    height: auto;
+    width: ${reviewCardStyles.width}px;
+    gap: 10px;
+    justify-content: flex-start;
 `;
 
 const ReviewCard = styled.div`
-    width: 300px;
-    max-width: 300px;
-    padding: 20px;
-    height: 300px;
+    max-width: ${reviewCardStyles.width}px;
+    padding: ${reviewCardStyles.padding}px;
     border-width: 8px;
     border-color: black;
 `;
 
-const SliderArrow = styled.div`
-    position: relative;
-    padding: 5px;
-    margin: 30px auto;
-    background: #000;
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
-    transition: all 0.2s linear;
+const StyledSlider = styled(Slider)`
+    width: ${sliderWidth}px;
+    margin: 50px 0;
+    padding: 0 ${sliderPadding}px;
 `;
+
+function SliderArrow(props) {
+    const { className, onClick, src, alt } = props;
+    return (
+        <div onClick={onClick} className={`arrow ${className}`}>
+            <img src={src} alt={alt} />
+        </div>
+    );
+}
 
 const ReviewsSection = () => {
     const sliderSettings = {
@@ -100,28 +105,51 @@ const ReviewsSection = () => {
         adaptiveHeight: false,
         infinite: true,
         variableWidth: true,
-        nextArrow: <SliderArrow />,
-        prevArrow: <SliderArrow />,
+        nextArrow: <SliderArrow src="icons/icons8-right-48.png" alt="right arrow" />,
+        prevArrow: <SliderArrow src="icons/icons8-left-48.png" alt="left arrow" />,
     };
+
     return (
-        <StyledSlider {...sliderSettings}>
-            {REVIEWS.map((review, i) => {
-                return (
-                    <ReviewCard key={i}>
-                        <p style={{ padding: '0 20px' }}>{review.review}</p>
-                        <ReviewerInfoContainer>
-                            {review.portrait.map((image, j) => {
-                                return <Portrait key={j} src={image} alt={review.name}></Portrait>;
-                            })}
-                            <ReviewerNameContainer>
-                                <h2 style={{ margin: 0 }}>{review.name}</h2>
-                                <p style={{ margin: 0 }}>{review.position}</p>
-                            </ReviewerNameContainer>
-                        </ReviewerInfoContainer>
-                    </ReviewCard>
-                );
-            })}
-        </StyledSlider>
+        <div
+            style={{
+                display: 'flex',
+                flexDirection: 'column',
+                width: '100%',
+                justifyContent: 'center',
+                alignItems: 'center',
+                marginTop: '50px',
+            }}
+        >
+            <h2> Reviews </h2>
+            <StyledSlider {...sliderSettings}>
+                {REVIEWS.map((review, i) => {
+                    return (
+                        <ReviewCard key={i}>
+                            <p
+                                style={{
+                                    padding: '0 20px',
+                                    fontStyle: 'italic',
+                                    alignSelf: 'flex-start',
+                                }}
+                            >
+                                {review.review}
+                            </p>
+                            <ReviewerInfoContainer>
+                                {review.portrait.map((image, j) => {
+                                    return (
+                                        <Portrait key={j} src={image} alt={review.name}></Portrait>
+                                    );
+                                })}
+                                <ReviewerNameContainer>
+                                    <h3 style={{ margin: 0 }}>{review.name}</h3>
+                                    <p style={{ margin: 0 }}>{review.position}</p>
+                                </ReviewerNameContainer>
+                            </ReviewerInfoContainer>
+                        </ReviewCard>
+                    );
+                })}
+            </StyledSlider>
+        </div>
     );
 };
 

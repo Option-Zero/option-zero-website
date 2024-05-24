@@ -40,7 +40,6 @@ const StyledLogoImg = styled(LogoImg)`
 
 const StyledGridContainer = styled.div`
     justify-content: center;
-    margin-bottom: 100px;
     @media (max-width: 600px) {
         margin-inline: 5%;
     }
@@ -56,6 +55,7 @@ const StyledTitle = styled.h4`
     color: var(--medium-grey);
     text-align: center;
     text-transform: uppercase;
+    margin-top: 50px;
     margin-bottom: 30px;
 `;
 
@@ -63,9 +63,6 @@ const StyledTitle = styled.h4`
 // e.g. `item xs={6} sm={4} lg={3}`
 // The xs, sm, lg represent the width of the screen
 // The value represents the number of columns out of 12 that each item should take up
-
-// I tried moving the Grid alignment props to match the other @emotion styling blocks,
-//      but it did not play nicely with materialUI's custom keywords ('container', etc)
 const LogosSection = () => {
     return (
         <>

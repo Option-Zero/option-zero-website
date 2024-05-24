@@ -1,6 +1,7 @@
 import React from 'react';
 
 import styled from '@emotion/styled';
+import { AnchorButton } from './SharedComponents.js';
 
 const ServiceCardDescription = styled.p`
     font-size: 15px;
@@ -102,7 +103,7 @@ const ServicesSection = () => {
                     ></StyledServiceCard>
                 ))}
             </ServiceCardContainer>
-            <button> [ Work With Us ] </button>
+            <AnchorButton> [ Work With Us ] </AnchorButton>
         </StyledServicesSection>
     );
 };

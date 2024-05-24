@@ -1,6 +1,7 @@
 import React from 'react';
 
 import styled from '@emotion/styled';
+import { AnchorButton } from './SharedComponents.js';
 
 const StyledContactUsSection = styled.div`
     display: block;
@@ -52,7 +53,7 @@ const ContactUsSection = () => {
                     <WhiteTitle> Let's work together! </WhiteTitle>
                     <WhiteSubtitle> We would love to hear from you! </WhiteSubtitle>
                 </StyledTextContainer>
-                <button> [ Submit ]</button>
+                <AnchorButton> [ Submit ]</AnchorButton>
             </StyledContactUsSection>
         </>
     );

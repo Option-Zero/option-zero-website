@@ -1,6 +1,7 @@
 import React from 'react';
 
 import styled from '@emotion/styled';
+import { AnchorButton } from './SharedComponents.js';
 
 const Banner = styled.div`
     display: block;
@@ -67,7 +68,7 @@ const HeaderSection = () => {
                         We provide personalized, end-to-end software solutions and on-demand
                         consulting to power the next generation of climate tech
                     </Subtitle>
-                    <button> [Get Started] </button>
+                    <AnchorButton> [Get Started] </AnchorButton>
                 </HeaderContent>
             </HeaderContainer>
         </Banner>

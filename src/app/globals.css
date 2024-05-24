@@ -59,22 +59,32 @@ p {
   margin-bottom: 24px;
 }
 
-button {
-  color: var(--white);
-  background-color: var(--logo-green);
-  &:hover {
-      background-color: var(--dark-grey);
-  }
-  &:active {
-      background-color: var(--medium-grey);
-  }
-  letter-spacing: 2px;
-  text-transform: capitalize;
-  border-radius: 8px;
-  border: 0;
-  padding: 12px 25px;
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 20px;
-  transition: all 0.2s;
+.slick-slider div {
+  display: flex;
+}
+
+.slick-arrow.slick-next,
+.slick-arrow.slick-prev {
+  padding: 5px;
+  background: var(--light-grey);
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  transition: all 0.2s linear;
+  opacity: 0.8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.slick-arrow.slick-next:hover,
+.slick-arrow.slick-prev:hover {
+    background-color: var(--medium-grey);
+    opacity:1;
+}
+
+/* disables default arrows */
+.slick-prev::before,.slick-next::before {
+  display:none;
 }
