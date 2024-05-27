@@ -7,9 +7,8 @@ import { PAGE_WIDTH } from '../Styles/Styles.js';
 const Banner = styled(SectionBackground)`
     align-items: flex-start;
     justify-content: flex-start;
-    // think i need this for big screens, hard to tell on laptop
     @media screen and (max-width: ${PAGE_WIDTH}px) {
-        justify-content: center;
+        align-items: center;
     }
     min-height: 0px;
     width: 100%;

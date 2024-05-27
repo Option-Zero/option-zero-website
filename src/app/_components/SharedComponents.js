@@ -14,6 +14,7 @@ export const SectionContent = styled.div((props) => ({
     padding: props.padding ? SECTION_PADDING : 0,
     justifyContent: 'center',
     alignItems: 'center',
+    margin: 'auto',
     maxWidth: PAGE_WIDTH,
 }));
 

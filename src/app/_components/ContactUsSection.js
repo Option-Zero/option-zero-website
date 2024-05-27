@@ -1,11 +1,11 @@
 import React from 'react';
 
 import styled from '@emotion/styled';
-import { AnchorButton, SectionBackground } from './SharedComponents.js';
+import { AnchorButton, SectionBackground, SectionContent } from './SharedComponents.js';
 import { Dark_blue, Logo_green } from '../Styles/Colors.js';
 import { PAGE_WIDTH } from '../Styles/Styles.js';
 
-const StyledContactUsSection = styled(SectionBackground)`
+const SectionBackgroundGradient = styled(SectionBackground)`
     background-color: ${Dark_blue};
     background-image: radial-gradient(
         circle farthest-corner at 0% 0%,
@@ -13,16 +13,12 @@ const StyledContactUsSection = styled(SectionBackground)`
         ${Dark_blue} 24%
     );
     filter: blur();
-    margin-top: 40px;
-    padding: 80px 40px 40px;
-    line-height: 24px;
-    box-sizing: border-box;
     background-size: auto, cover;
 `;
 
-const StyledTextContainer = styled.div`
+const StyledSectionContent = styled(SectionContent)`
+    align-items: flex-start;
     max-width: ${PAGE_WIDTH * 0.5};
-    margin-bottom: 40px;
 `;
 
 const WhiteSubtitle = styled.p`
@@ -33,14 +29,14 @@ const WhiteSubtitle = styled.p`
 const ContactUsSection = () => {
     return (
         <>
-            <StyledContactUsSection>
-                <StyledTextContainer>
+            <SectionBackgroundGradient padding>
+                <StyledSectionContent column>
                     <h2 style={{ color: Logo_green }}> Have a project? </h2>
                     <h2 style={{ color: 'white' }}> Let's work together! </h2>
                     <WhiteSubtitle> We would love to hear from you! </WhiteSubtitle>
-                </StyledTextContainer>
-                <AnchorButton> [ Submit ]</AnchorButton>
-            </StyledContactUsSection>
+                    <AnchorButton style={{ marginTop: '40px' }}> [ Submit ] </AnchorButton>
+                </StyledSectionContent>
+            </SectionBackgroundGradient>
         </>
     );
 };

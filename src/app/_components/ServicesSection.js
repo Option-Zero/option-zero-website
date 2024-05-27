@@ -31,6 +31,7 @@ const StyledServiceCard = styled(ServiceCard)`
         width: auto;
         height: auto;
     }
+    box-sizing: border-box;
     border: 1px solid rgba(100, 111, 121, 0.12);
     border-radius: 12px;
     margin: 10px;
