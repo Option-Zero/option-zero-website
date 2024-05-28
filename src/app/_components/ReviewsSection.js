@@ -8,6 +8,8 @@ import styled from '@emotion/styled';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { SectionBackground, SectionContent } from './SharedComponents';
+import { BREAKPOINTS, PAGE_WIDTH } from '../Styles/Styles';
+import { Medium_grey } from '../Styles/Colors';
 
 const REVIEWS = [
     {
@@ -49,10 +51,14 @@ const reviewCardStyles = {
     width: 350,
     padding: 20,
 };
-const cardCount = 2;
 const arrowsOffset = 50;
-const sliderWidth =
-    (reviewCardStyles.width + reviewCardStyles.padding * 2) * cardCount + arrowsOffset * 2;
+var cardCount = 2;
+
+const StyledTitle = styled.h4`
+    color: ${Medium_grey};
+    text-transform: uppercase;
+    padding-bottom: 30px;
+`;
 
 const Portrait = styled.img`
     width: 60px;
@@ -86,9 +92,19 @@ const ReviewCard = styled.div`
 `;
 
 const StyledSlider = styled(Slider)`
-    width: ${sliderWidth}px;
-    margin: 0;
+    width: ${(reviewCardStyles.width + reviewCardStyles.padding * 2) * cardCount +
+    arrowsOffset * 2}px;
+    margin: 0 ${arrowsOffset}px;
     padding: 0 ${arrowsOffset}px;
+
+    /* how do I change the value of cardCount and recalculate in one expression */
+
+    @media screen and (max-width: ${BREAKPOINTS.md}) {
+        width: ${reviewCardStyles.width + reviewCardStyles.padding * 2 + arrowsOffset * 2}px;
+    }
+    @media screen and (min-width: 1500px) {
+        width: ${(reviewCardStyles.width + reviewCardStyles.padding * 2) * 3 + arrowsOffset * 2}px;
+    }
 `;
 
 function SliderArrow(props) {
@@ -105,10 +121,11 @@ function SliderArrow(props) {
 // kinda have a setup with cardNumber
 const ReviewsSection = () => {
     const sliderSettings = {
-        speed: 1000,
+        speed: 700,
         adaptiveHeight: false,
         infinite: true,
         variableWidth: true,
+        slidesToScroll: 1,
         nextArrow: <SliderArrow src="icons/icons8-right-48.png" alt="right arrow" />,
         prevArrow: <SliderArrow src="icons/icons8-left-48.png" alt="left arrow" />,
     };
@@ -116,7 +133,7 @@ const ReviewsSection = () => {
     return (
         <SectionBackground padding>
             <SectionContent column>
-                <h3> Reviews </h3>
+                <StyledTitle> Our Clients Say </StyledTitle>
                 <StyledSlider {...sliderSettings}>
                     {REVIEWS.map((review, i) => {
                         return (

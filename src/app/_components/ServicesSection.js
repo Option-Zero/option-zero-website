@@ -95,7 +95,9 @@ const ServicesSection = () => {
                     ></StyledServiceCard>
                 ))}
             </ServiceCardContainer>
-            <AnchorButton> [ Work With Us ] </AnchorButton>
+            <AnchorButton as="a" href="#contact-section">
+                [ Work With Us ]
+            </AnchorButton>
         </SectionContent>
     );
 };

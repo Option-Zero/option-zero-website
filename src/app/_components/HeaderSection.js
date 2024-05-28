@@ -12,7 +12,6 @@ const Banner = styled(SectionBackground)`
     }
     min-height: 0px;
     width: 100%;
-    box-sizing: border-box;
     background-image: url('/HeaderBackground.png');
     background-position: 50% 80%;
     background-clip: border-box;

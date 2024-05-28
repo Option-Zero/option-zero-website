@@ -29,7 +29,7 @@ const WhiteSubtitle = styled.p`
 const ContactUsSection = () => {
     return (
         <>
-            <SectionBackgroundGradient padding>
+            <SectionBackgroundGradient padding id="contact-section">
                 <StyledSectionContent column>
                     <h2 style={{ color: Logo_green }}> Have a project? </h2>
                     <h2 style={{ color: 'white' }}> Let's work together! </h2>

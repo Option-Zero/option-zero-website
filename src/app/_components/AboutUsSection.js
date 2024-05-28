@@ -1,17 +1,25 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { AnchorButton, SectionBackground } from './SharedComponents.js';
+import { AnchorButton, SectionBackground, SectionContent } from './SharedComponents.js';
 import { Cream, Dark_grey, Logo_green } from '../Styles/Colors.js';
-import { Container } from '@mui/material';
+import { BREAKPOINTS } from '../Styles/Styles.js';
 
-const AboutUsContainer = styled(Container)`
-    display: flex;
-    align-items: flex-start; /*not sure how i feel about this*/
-    justify-content: space-between;
-    gap: 40px;
-    @media screen and (max-width: 800px) {
+const AboutUsSectionContent = styled(SectionContent)`
+    padding: 0 25px;
+    justify-content: space-around;
+    gap: 100px;
+    @media screen and (max-width: ${BREAKPOINTS.md}) {
         flex-wrap: wrap;
         justify-content: center;
+    }
+`;
+
+const AboutUsText = styled.div`
+    @media screen and (max-width: ${BREAKPOINTS.md}) {
+        justify-content: center;
+        min-width: 300px;
+        max-width: 450px;
+        width: auto;
     }
 `;
 
@@ -45,9 +53,9 @@ const JnJPortrait = styled.div`
 const AboutUsSection = () => {
     return (
         <SectionBackground padding style={{ backgroundColor: '#f0f1f2' }}>
-            <AboutUsContainer>
-                <JnJPortrait></JnJPortrait>
-                <div>
+            <AboutUsSectionContent>
+                <JnJPortrait />
+                <AboutUsText>
                     <h3> About Us </h3>
                     <p>
                         We are Jason and Jaime Curtis, a husband and wife team. We've built on our
@@ -56,8 +64,8 @@ const AboutUsSection = () => {
                     </p>
                     <p>If your mission is climate resilience, your mission is our mission.</p>
                     <StyledAnchorButton> [ Work With Us ]</StyledAnchorButton>
-                </div>
-            </AboutUsContainer>
+                </AboutUsText>
+            </AboutUsSectionContent>
         </SectionBackground>
     );
 };

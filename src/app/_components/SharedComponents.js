@@ -36,4 +36,5 @@ export const AnchorButton = styled.button`
     font-weight: 400;
     line-height: 20px;
     transition: all 0.2s;
+    text-decoration: none;
 `;
