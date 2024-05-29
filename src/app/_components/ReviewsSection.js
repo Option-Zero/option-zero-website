@@ -1,6 +1,6 @@
 import React from 'react';
-import Slider from 'react-slick';
 import styled from '@emotion/styled';
+import { CCarousel, CCarouselCaption, CCarouselItem } from '@coreui/react';
 import { SectionBackground, SectionContent } from './Section';
 import { BREAKPOINTS, MAX_CONTENT_WIDTH } from '../Styles/Styles';
 import { Medium_grey } from '../Styles/Colors';
@@ -82,141 +82,51 @@ const ReviewerInfoContainer = styled.div`
 `;
 
 const ReviewCard = styled.div`
-    max-width: ${reviewCardStyles.width}px;
+    max-width: 350px;
     width: 300px;
-    padding: ${reviewCardStyles.padding}px;
+    padding: 20px;
     box-sizing: border-box;
     border-width: 8px;
     border-color: black;
 `;
 
-const StyledSlider = styled(Slider)`
-    width: 100%%;
-    margin: 100px auto;
-`;
-
-function SliderArrow(props) {
-    const { className, onClick, src, alt } = props;
-    return (
-        <div onClick={onClick} className={`arrow ${className}`}>
-            {/**I do not understand how this works */}
-            <img src={src} alt={alt} />
-        </div>
-    );
-}
-
 function generateSlides() {
     return REVIEWS.map((review, i) => {
         return (
-            <ReviewCard key={i}>
-                <p
-                    style={{
-                        padding: '0 20px',
-                        fontStyle: 'italic',
-                        alignSelf: 'flex-start',
-                    }}
-                >
-                    {review.review}
-                </p>
-                <ReviewerInfoContainer>
-                    {review.portrait.map((image, j) => {
-                        return <Portrait key={j} src={image} alt={review.name}></Portrait>;
-                    })}
-                    <ReviewerNameContainer>
-                        <h3 style={{ margin: 0 }}>{review.name}</h3>
-                        <p style={{ margin: 0 }}>{review.position}</p>
-                    </ReviewerNameContainer>
-                </ReviewerInfoContainer>
-            </ReviewCard>
+            <CCarouselItem key={i}>
+                <ReviewCard>
+                    <p
+                        style={{
+                            padding: '0 20px',
+                            fontStyle: 'italic',
+                            alignSelf: 'flex-start',
+                        }}
+                    >
+                        {review.review}
+                    </p>
+                    <ReviewerInfoContainer>
+                        {review.portrait.map((image, j) => {
+                            return <Portrait key={j} src={image} alt={review.name}></Portrait>;
+                        })}
+                        <ReviewerNameContainer>
+                            <h3 style={{ margin: 0 }}>{review.name}</h3>
+                            <p style={{ margin: 0 }}>{review.position}</p>
+                        </ReviewerNameContainer>
+                    </ReviewerInfoContainer>
+                </ReviewCard>
+            </CCarouselItem>
         );
     });
 }
 
 const ReviewsSection = () => {
-    const sliderSettings = {
-        centerMode: true,
-        speed: 700,
-        adaptiveHeight: false,
-        infinite: false,
-        slidesToShow: 2,
-        slidesToScroll: 1,
-        variableWidth: true,
-        // nextArrow: <SliderArrow src="icons/icons8-right-48.png" alt="right arrow" />,
-        // prevArrow: <SliderArrow src="icons/icons8-left-48.png" alt="left arrow" />,
-        responsive: [
-            {
-                breakpoint: 1024,
-                settings: {
-                    slidesToShow: 3,
-                    slidesToScroll: 3,
-                    infinite: true,
-                    dots: true,
-                },
-            },
-            {
-                breakpoint: 600,
-                settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 2,
-                    initialSlide: 2,
-                },
-            },
-            {
-                breakpoint: 480,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                },
-            },
-        ],
-    };
-
     return (
-        <div>
-            <SectionContent>
-                <StyledTitle> Our Clients Say </StyledTitle>
-            </SectionContent>
-
-            <StyledSlider {...sliderSettings} style={{ backgroundColor: 'pink' }}>
-                {/* <ReviewCard>
-                        <p
-                            style={{
-                                padding: '0 20px',
-                                fontStyle: 'italic',
-                                alignSelf: 'flex-start',
-                            }}
-                        >
-                            {REVIEWS[0].review}
-                        </p>
-                        <ReviewerInfoContainer>
-                            <Portrait src={REVIEWS[0].portrait} alt={REVIEWS[0].name}></Portrait>
-                            <ReviewerNameContainer>
-                                <h3 style={{ margin: 0 }}>{REVIEWS[0].name}</h3>
-                                <p style={{ margin: 0 }}>{REVIEWS[0].position}</p>
-                            </ReviewerNameContainer>
-                        </ReviewerInfoContainer>
-                    </ReviewCard>
-                    <ReviewCard>
-                        <p
-                            style={{
-                                padding: '0 20px',
-                                fontStyle: 'italic',
-                                alignSelf: 'flex-start',
-                            }}
-                        >
-                            {REVIEWS[1].review}
-                        </p>
-                        <ReviewerInfoContainer>
-                            <Portrait src={REVIEWS[1].portrait} alt={REVIEWS[1].name}></Portrait>
-                            <ReviewerNameContainer>
-                                <h3 style={{ margin: 0 }}>{REVIEWS[1].name}</h3>
-                                <p style={{ margin: 0 }}>{REVIEWS[1].position}</p>
-                            </ReviewerNameContainer>
-                        </ReviewerInfoContainer>
-                    </ReviewCard> */}
+        <SectionContent padding column>
+            <StyledTitle>our clients say</StyledTitle>
+            <CCarousel controls indicators dark>
                 {generateSlides()}
-            </StyledSlider>
-        </div>
+            </CCarousel>
+        </SectionContent>
     );
 };
 

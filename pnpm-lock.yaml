@@ -8,6 +8,12 @@ importers:
 
   .:
     dependencies:
+      '@coreui/coreui':
+        specifier: ^5.0.2
+        version: 5.0.2(@popperjs/core@2.11.8)
+      '@coreui/react':
+        specifier: ^5.1.0
+        version: 5.1.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@emotion/react':
         specifier: ^11.11.4
         version: 11.11.4(@types/react@18.3.1)(react@18.3.1)
@@ -93,6 +99,17 @@ packages:
   '@babel/types@7.24.5':
     resolution: {integrity: sha512-6mQNsaLeXTw0nxYUYu+NSa4Hx4BlF1x1x8/PMFbiR+GBSr+2DkECc69b8hgy2frEodNcvPffeH8YfWd3LI6jhQ==}
     engines: {node: '>=6.9.0'}
+
+  '@coreui/coreui@5.0.2':
+    resolution: {integrity: sha512-ox3nnVxEvitgSMKbn5+DXMMLWgjoRKL0fnWXwA4B4eTLhnzyYBUZZAs+xHWIGRK0/PfP6cMiliYdC4Swhw/5xQ==}
+    peerDependencies:
+      '@popperjs/core': ^2.11.8
+
+  '@coreui/react@5.1.0':
+    resolution: {integrity: sha512-pOx4jG++YgOuuoMycbbVDnSxoPP54ZkKvxVQH4i/h38gscHBeSj2bDk7gxA29QNg3fVUZympgXpQ16C/WU0Ikw==}
+    peerDependencies:
+      react: '>=17'
+      react-dom: '>=17'
 
   '@emotion/babel-plugin@11.11.0':
     resolution: {integrity: sha512-m4HEDZleaaCH+XgDDsPF15Ht6wTLsgDTeR3WYj9Q/k76JtWhrJjcP4+/XlG8LGT/Rol9qUfOIztXeA84ATpqPQ==}
@@ -1839,6 +1856,18 @@ snapshots:
       '@babel/helper-string-parser': 7.24.1
       '@babel/helper-validator-identifier': 7.24.5
       to-fast-properties: 2.0.0
+
+  '@coreui/coreui@5.0.2(@popperjs/core@2.11.8)':
+    dependencies:
+      '@popperjs/core': 2.11.8
+
+  '@coreui/react@5.1.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+    dependencies:
+      '@coreui/coreui': 5.0.2(@popperjs/core@2.11.8)
+      '@popperjs/core': 2.11.8
+      prop-types: 15.8.1
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
 
   '@emotion/babel-plugin@11.11.0':
     dependencies:
