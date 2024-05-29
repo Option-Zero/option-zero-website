@@ -1,15 +1,17 @@
 import React from 'react';
 
 import styled from '@emotion/styled';
-import { AnchorButton, SectionBackground, SectionContent } from './SharedComponents.js';
+import { SectionBackground, SectionContent } from './Section.js';
 import { Dark_blue, Logo_green } from '../Styles/Colors.js';
-import { PAGE_WIDTH } from '../Styles/Styles.js';
+import { MAX_CONTENT_WIDTH } from '../Styles/Styles.js';
+import { GreenButton } from './Button.js';
 
 const SectionBackgroundGradient = styled(SectionBackground)`
     background-color: ${Dark_blue};
     background-image: radial-gradient(
         circle farthest-corner at 0% 0%,
         rgba(39, 211, 116, 0.3),
+        // ^ Logo_Green
         ${Dark_blue} 24%
     );
     filter: blur();
@@ -18,7 +20,7 @@ const SectionBackgroundGradient = styled(SectionBackground)`
 
 const StyledSectionContent = styled(SectionContent)`
     align-items: flex-start;
-    max-width: ${PAGE_WIDTH * 0.5};
+    max-width: ${MAX_CONTENT_WIDTH * 0.5};
 `;
 
 const WhiteSubtitle = styled.p`
@@ -34,7 +36,7 @@ const ContactUsSection = () => {
                     <h2 style={{ color: Logo_green }}> Have a project? </h2>
                     <h2 style={{ color: 'white' }}> Let's work together! </h2>
                     <WhiteSubtitle> We would love to hear from you! </WhiteSubtitle>
-                    <AnchorButton style={{ marginTop: '40px' }}> [ Submit ] </AnchorButton>
+                    <GreenButton style={{ marginTop: '40px' }}> [ Submit ] </GreenButton>
                 </StyledSectionContent>
             </SectionBackgroundGradient>
         </>

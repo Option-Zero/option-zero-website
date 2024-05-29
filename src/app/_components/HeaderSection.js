@@ -1,13 +1,14 @@
 import React from 'react';
 
 import styled from '@emotion/styled';
-import { AnchorButton, SectionBackground, SectionContent } from './SharedComponents.js';
-import { PAGE_WIDTH } from '../Styles/Styles.js';
+import { SectionBackground, SectionContent } from './Section.js';
+import { MAX_CONTENT_WIDTH } from '../Styles/Styles.js';
+import { GreenButton } from './Button.js';
 
 const Banner = styled(SectionBackground)`
     align-items: flex-start;
     justify-content: flex-start;
-    @media screen and (max-width: ${PAGE_WIDTH}px) {
+    @media screen and (max-width: ${MAX_CONTENT_WIDTH}px) {
         align-items: center;
     }
     min-height: 0px;
@@ -46,7 +47,7 @@ const HeaderSection = () => {
                         We provide personalized, end-to-end software solutions and on-demand
                         consulting to power the next generation of climate tech
                     </p>
-                    <AnchorButton> [Get Started] </AnchorButton>
+                    <GreenButton> [Get Started] </GreenButton>
                 </HeaderContent>
             </HeaderContainer>
         </Banner>

@@ -1,8 +1,9 @@
 import React from 'react';
 
 import styled from '@emotion/styled';
-import { AnchorButton, SectionContent } from './SharedComponents.js';
-import { PAGE_WIDTH } from '../Styles/Styles.js';
+import { SectionContent } from './Section.js';
+import { GreenButton } from './Button.js';
+import { MAX_CONTENT_WIDTH } from '../Styles/Styles.js';
 import { Medium_grey } from '../Styles/Colors.js';
 
 const ServiceCardDescription = styled.p`
@@ -46,7 +47,7 @@ const ServiceCardContainer = styled(SectionContent)`
 
 const ServicesSectionDescription = styled.p`
     text-align: center;
-    max-width: ${PAGE_WIDTH * 0.5}px;
+    max-width: ${MAX_CONTENT_WIDTH * 0.5}px;
     font-weight: 400;
 `;
 
@@ -95,9 +96,9 @@ const ServicesSection = () => {
                     ></StyledServiceCard>
                 ))}
             </ServiceCardContainer>
-            <AnchorButton as="a" href="#contact-section">
+            <GreenButton as="a" href="#contact-section">
                 [ Work With Us ]
-            </AnchorButton>
+            </GreenButton>
         </SectionContent>
     );
 };

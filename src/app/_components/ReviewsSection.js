@@ -1,15 +1,12 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
-
 import Slider from 'react-slick';
 import styled from '@emotion/styled';
-
+import { SectionBackground, SectionContent } from './Section';
+import { BREAKPOINTS, MAX_CONTENT_WIDTH } from '../Styles/Styles';
+import { Medium_grey } from '../Styles/Colors';
 //required for Slider component to function properly
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { SectionBackground, SectionContent } from './SharedComponents';
-import { BREAKPOINTS, PAGE_WIDTH } from '../Styles/Styles';
-import { Medium_grey } from '../Styles/Colors';
 
 const REVIEWS = [
     {
@@ -37,7 +34,7 @@ const REVIEWS = [
         name: 'James Regulinski',
         position: 'CTO, Carbon Collective',
         portrait: ['reviewers/JamesRegulinski.jpeg'],
-        review: 'Jaime and Jason are a stellar team. They were instrumental in building and running our highly collaborative team and kept us laser-focused on our top strategic priorities. If you want a team to help you figure out where you need to go and get you there fast, you want Jaime and Jason.',
+        review: '"Jaime and Jason are a stellar team. They were instrumental in building and running our highly collaborative team and kept us laser-focused on our top strategic priorities. If you want a team to help you figure out where you need to go and get you there fast, you want Jaime and Jason."',
     },
     {
         name: 'Tom Abeles',
@@ -51,7 +48,7 @@ const reviewCardStyles = {
     width: 350,
     padding: 20,
 };
-const arrowsOffset = 50;
+const arrowsOffset = 0;
 var cardCount = 2;
 
 const StyledTitle = styled.h4`
@@ -86,25 +83,16 @@ const ReviewerInfoContainer = styled.div`
 
 const ReviewCard = styled.div`
     max-width: ${reviewCardStyles.width}px;
+    width: 300px;
     padding: ${reviewCardStyles.padding}px;
+    box-sizing: border-box;
     border-width: 8px;
     border-color: black;
 `;
 
 const StyledSlider = styled(Slider)`
-    width: ${(reviewCardStyles.width + reviewCardStyles.padding * 2) * cardCount +
-    arrowsOffset * 2}px;
-    margin: 0 ${arrowsOffset}px;
-    padding: 0 ${arrowsOffset}px;
-
-    /* how do I change the value of cardCount and recalculate in one expression */
-
-    @media screen and (max-width: ${BREAKPOINTS.md}) {
-        width: ${reviewCardStyles.width + reviewCardStyles.padding * 2 + arrowsOffset * 2}px;
-    }
-    @media screen and (min-width: 1500px) {
-        width: ${(reviewCardStyles.width + reviewCardStyles.padding * 2) * 3 + arrowsOffset * 2}px;
-    }
+    width: 100%%;
+    margin: 100px auto;
 `;
 
 function SliderArrow(props) {
@@ -117,57 +105,118 @@ function SliderArrow(props) {
     );
 }
 
-// still need to figure out breakpoints for this
-// kinda have a setup with cardNumber
+function generateSlides() {
+    return REVIEWS.map((review, i) => {
+        return (
+            <ReviewCard key={i}>
+                <p
+                    style={{
+                        padding: '0 20px',
+                        fontStyle: 'italic',
+                        alignSelf: 'flex-start',
+                    }}
+                >
+                    {review.review}
+                </p>
+                <ReviewerInfoContainer>
+                    {review.portrait.map((image, j) => {
+                        return <Portrait key={j} src={image} alt={review.name}></Portrait>;
+                    })}
+                    <ReviewerNameContainer>
+                        <h3 style={{ margin: 0 }}>{review.name}</h3>
+                        <p style={{ margin: 0 }}>{review.position}</p>
+                    </ReviewerNameContainer>
+                </ReviewerInfoContainer>
+            </ReviewCard>
+        );
+    });
+}
+
 const ReviewsSection = () => {
     const sliderSettings = {
+        centerMode: true,
         speed: 700,
         adaptiveHeight: false,
-        infinite: true,
-        variableWidth: true,
+        infinite: false,
+        slidesToShow: 2,
         slidesToScroll: 1,
-        nextArrow: <SliderArrow src="icons/icons8-right-48.png" alt="right arrow" />,
-        prevArrow: <SliderArrow src="icons/icons8-left-48.png" alt="left arrow" />,
+        variableWidth: true,
+        // nextArrow: <SliderArrow src="icons/icons8-right-48.png" alt="right arrow" />,
+        // prevArrow: <SliderArrow src="icons/icons8-left-48.png" alt="left arrow" />,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 3,
+                    infinite: true,
+                    dots: true,
+                },
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
+                    initialSlide: 2,
+                },
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                },
+            },
+        ],
     };
 
     return (
-        <SectionBackground padding>
-            <SectionContent column>
+        <div>
+            <SectionContent>
                 <StyledTitle> Our Clients Say </StyledTitle>
-                <StyledSlider {...sliderSettings}>
-                    {REVIEWS.map((review, i) => {
-                        return (
-                            <ReviewCard key={i}>
-                                <p
-                                    style={{
-                                        padding: '0 20px',
-                                        fontStyle: 'italic',
-                                        alignSelf: 'flex-start',
-                                    }}
-                                >
-                                    {review.review}
-                                </p>
-                                <ReviewerInfoContainer>
-                                    {review.portrait.map((image, j) => {
-                                        return (
-                                            <Portrait
-                                                key={j}
-                                                src={image}
-                                                alt={review.name}
-                                            ></Portrait>
-                                        );
-                                    })}
-                                    <ReviewerNameContainer>
-                                        <h3 style={{ margin: 0 }}>{review.name}</h3>
-                                        <p style={{ margin: 0 }}>{review.position}</p>
-                                    </ReviewerNameContainer>
-                                </ReviewerInfoContainer>
-                            </ReviewCard>
-                        );
-                    })}
-                </StyledSlider>
             </SectionContent>
-        </SectionBackground>
+
+            <StyledSlider {...sliderSettings} style={{ backgroundColor: 'pink' }}>
+                {/* <ReviewCard>
+                        <p
+                            style={{
+                                padding: '0 20px',
+                                fontStyle: 'italic',
+                                alignSelf: 'flex-start',
+                            }}
+                        >
+                            {REVIEWS[0].review}
+                        </p>
+                        <ReviewerInfoContainer>
+                            <Portrait src={REVIEWS[0].portrait} alt={REVIEWS[0].name}></Portrait>
+                            <ReviewerNameContainer>
+                                <h3 style={{ margin: 0 }}>{REVIEWS[0].name}</h3>
+                                <p style={{ margin: 0 }}>{REVIEWS[0].position}</p>
+                            </ReviewerNameContainer>
+                        </ReviewerInfoContainer>
+                    </ReviewCard>
+                    <ReviewCard>
+                        <p
+                            style={{
+                                padding: '0 20px',
+                                fontStyle: 'italic',
+                                alignSelf: 'flex-start',
+                            }}
+                        >
+                            {REVIEWS[1].review}
+                        </p>
+                        <ReviewerInfoContainer>
+                            <Portrait src={REVIEWS[1].portrait} alt={REVIEWS[1].name}></Portrait>
+                            <ReviewerNameContainer>
+                                <h3 style={{ margin: 0 }}>{REVIEWS[1].name}</h3>
+                                <p style={{ margin: 0 }}>{REVIEWS[1].position}</p>
+                            </ReviewerNameContainer>
+                        </ReviewerInfoContainer>
+                    </ReviewCard> */}
+                {generateSlides()}
+            </StyledSlider>
+        </div>
     );
 };
 

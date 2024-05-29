@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { AnchorButton, SectionBackground, SectionContent } from './SharedComponents.js';
-import { Cream, Dark_grey, Logo_green } from '../Styles/Colors.js';
+import { SectionBackground, SectionContent } from './Section.js';
+import { TransparentButton } from './Button.js';
 import { BREAKPOINTS } from '../Styles/Styles.js';
 
 const AboutUsSectionContent = styled(SectionContent)`
@@ -23,16 +23,6 @@ const AboutUsText = styled.div`
     }
 `;
 
-const StyledAnchorButton = styled(AnchorButton)`
-    background-color: transparent;
-    color: ${Logo_green};
-    padding: 0;
-    &:hover {
-        color: ${Dark_grey};
-        background-color: ${Cream};
-    }
-`;
-
 const JnJPortrait = styled.div`
     display: block;
     background-image: url('/2023_1_19_JasonandjamieportraitVegas-7.jpg');
@@ -40,10 +30,10 @@ const JnJPortrait = styled.div`
     background-size: cover;
     background-attachment: scroll;
     width: auto;
-    min-width: 450px;
+    min-width: 200px;
     max-width: 600px;
     height: auto;
-    min-height: 300px;
+    min-height: 200px;
     max-height: 400px;
     &:hover {
         background-image: url('/2023_1_19_JasonandjamieportraitVegas-11.jpg');
@@ -63,7 +53,7 @@ const AboutUsSection = () => {
                         Option Zero, the software consultancy for climate companies & initiatives.
                     </p>
                     <p>If your mission is climate resilience, your mission is our mission.</p>
-                    <StyledAnchorButton> [ Work With Us ]</StyledAnchorButton>
+                    <TransparentButton> [ Work With Us ]</TransparentButton>
                 </AboutUsText>
             </AboutUsSectionContent>
         </SectionBackground>
