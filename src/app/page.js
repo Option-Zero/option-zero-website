@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import styled from '@emotion/styled';
+import Divider from '@mui/material/Divider';
 
 import ServicesSection from './_components/ServicesSection.js';
 import AboutUsSection from './_components/AboutUsSection.js';
@@ -9,17 +9,16 @@ import ReviewsSection from './_components/ReviewsSection.js';
 import LogosSection from './_components/LogosSection.js';
 import ContactUsSection from './_components/ContactUsSection.js';
 
-const StyledMain = styled.body``;
-
 export default function Home() {
     return (
-        <StyledMain>
+        <>
             <HeaderSection />
             <ServicesSection />
             <AboutUsSection />
             <ReviewsSection />
+            <Divider />
             <LogosSection />
             <ContactUsSection />
-        </StyledMain>
+        </>
     );
 }
