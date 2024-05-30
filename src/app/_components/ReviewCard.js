@@ -21,19 +21,27 @@ const ReviewerInfoContainer = styled.div`
     align-items: center;
     align-self: flex-end;
     height: auto;
-    width: 100%;
+    width: '100%',
     gap: 10px;
     justify-content: center;
 `;
 
-const ReviewCard = ({ className, info }) => {
+const ReviewCardStyles = {
+    display: 'inline-block',
+    width: 'fit-content',
+    maxWidth: '80%',
+    height: '100%',
+};
+
+export const ReviewCard = ({ hidden, info }) => {
     return (
-        <div className={className}>
+        <div style={{ ...ReviewCardStyles, ...hidden }}>
             <p
                 style={{
-                    padding: '0 20px',
                     fontStyle: 'italic',
-                    alignSelf: 'flex-start',
+                    textJustify: 'left',
+                    minWidth: '100%',
+                    width: '0',
                 }}
             >
                 {info.quote}
@@ -50,11 +58,3 @@ const ReviewCard = ({ className, info }) => {
         </div>
     );
 };
-
-export const StyledReviewCard = styled(ReviewCard)`
-    max-width: 400px;
-    padding: 20px 20px 50px;
-    box-sizing: border-box;
-    border-width: 8px;
-    border-color: black;
-`;

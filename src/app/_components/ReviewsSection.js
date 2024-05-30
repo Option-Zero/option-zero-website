@@ -1,5 +1,3 @@
-import '../Carousel.css';
-
 import React, { useState } from 'react';
 
 import { BsArrowLeftCircleFill, BsArrowRightCircleFill } from 'react-icons/bs';
@@ -7,7 +5,8 @@ import { BsArrowLeftCircleFill, BsArrowRightCircleFill } from 'react-icons/bs';
 import styled from '@emotion/styled';
 
 import { Medium_grey } from '../Styles/Colors';
-import { StyledReviewCard } from './ReviewCard';
+import { BREAKPOINTS } from '../Styles/Styles';
+import { ReviewCard } from './ReviewCard';
 import { SectionContent } from './Section';
 
 const REVIEWS = [
@@ -52,7 +51,49 @@ const StyledTitle = styled.h4`
     padding-bottom: 30px;
 `;
 
-const Carousel = ({ data }) => {
+const ArrowStyles = `
+    position: absolute;
+    filter: drop-shadow(0px 0px 5px #555);
+    color: white;
+    width: 2rem; 
+    height: 2rem; 
+    @media (max-width: ${BREAKPOINTS.sm}){
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+    &:hover{
+        cursor: pointer;
+    }`;
+
+const LeftArrow = styled(BsArrowLeftCircleFill)`
+    ${ArrowStyles}
+    left: 1rem;
+`;
+
+const RightArrow = styled(BsArrowRightCircleFill)`
+    ${ArrowStyles}
+    right: 1rem;
+`;
+
+const Indicators = styled.div`
+    display: flex;
+    position: absolute;
+    bottom: 1rem;
+`;
+const Indicator = styled.button`
+    background-color: white;
+    height: 0.5rem;
+    width: 0.5rem;
+    border-radius: 100%;
+    outline: none;
+    border: none;
+    padding: 0;
+    box-shadow: 0px 0px 5px #555;
+    margin: 0 0.2rem;
+    cursor: pointer;
+`;
+
+const Carousel = ({ data, className }) => {
     const [slide, setSlide] = useState(0);
 
     const nextSlide = () => {
@@ -64,38 +105,52 @@ const Carousel = ({ data }) => {
     };
 
     return (
-        <div className="carousel">
-            <BsArrowLeftCircleFill onClick={prevSlide} className="arrow arrow-left" />
+        <div className={className}>
+            <LeftArrow onClick={prevSlide} />
             {data.map((item, idx) => {
                 return (
-                    <StyledReviewCard
+                    <ReviewCard
                         info={item}
                         key={idx}
-                        className={slide === idx ? 'slide' : 'slide slide-hidden'}
-                    ></StyledReviewCard>
+                        hidden={slide === idx ? {} : { display: 'none' }} //i dont like this but i'll fix it later
+                    ></ReviewCard>
                 );
             })}
-            <BsArrowRightCircleFill onClick={nextSlide} className="arrow arrow-right" />
-            <span className="indicators">
+            <RightArrow onClick={nextSlide} />
+            <Indicators>
                 {data.map((_, idx) => {
                     return (
-                        <button
+                        <Indicator
                             key={idx}
-                            className={slide === idx ? 'indicator' : 'indicator indicator-inactive'}
+                            style={slide === idx ? {} : { backgroundColor: 'grey' }}
                             onClick={() => setSlide(idx)}
-                        ></button>
+                        ></Indicator>
                     );
                 })}
-            </span>
+            </Indicators>
         </div>
     );
 };
+
+const StyledCarousel = styled(Carousel)`
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 300px;
+    max-height: fit-content;
+    width: 550px;
+    max-width: 80%;
+    padding: 10px 10% 50px;
+    border-radius: 0.5rem;
+    box-shadow: 0px 0px 7px #666;
+`;
 
 const ReviewsSection = () => {
     return (
         <SectionContent padding column>
             <StyledTitle>our clients say</StyledTitle>
-            <Carousel data={REVIEWS} />
+            <StyledCarousel data={REVIEWS} />
         </SectionContent>
     );
 };
