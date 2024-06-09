@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { BsArrowLeftCircleFill, BsArrowRightCircleFill } from 'react-icons/bs';
+import { BsArrowRightCircleFill } from 'react-icons/bs';
 
 import styled from '@emotion/styled';
 
@@ -51,12 +51,16 @@ const StyledTitle = styled.h4`
     padding-bottom: 30px;
 `;
 
+//fixed height relative to box
 const ArrowStyles = `
+    background-color: transparent;
+    font-size: 20px;
     position: absolute;
-    filter: drop-shadow(0px 0px 5px #555);
-    color: white;
-    width: 2rem; 
-    height: 2rem; 
+    border: none;
+    border-radius: 50%;
+    width: 3rem; 
+    height: 3rem; 
+    top: 8rem;
     @media (max-width: ${BREAKPOINTS.sm}){
         width: 1.5rem;
         height: 1.5rem;
@@ -65,12 +69,12 @@ const ArrowStyles = `
         cursor: pointer;
     }`;
 
-const LeftArrow = styled(BsArrowLeftCircleFill)`
+const LeftArrow = styled.button`
     ${ArrowStyles}
     left: 1rem;
 `;
 
-const RightArrow = styled(BsArrowRightCircleFill)`
+const RightArrow = styled.button`
     ${ArrowStyles}
     right: 1rem;
 `;
@@ -94,7 +98,7 @@ const Indicator = styled.button`
 `;
 
 const Carousel = ({ data, className }) => {
-    const [slide, setSlide] = useState(0);
+    const [slide, setSlide] = useState(1);
 
     const nextSlide = () => {
         setSlide(slide === data.length - 1 ? 0 : slide + 1);
@@ -106,24 +110,27 @@ const Carousel = ({ data, className }) => {
 
     return (
         <div className={className}>
-            <LeftArrow onClick={prevSlide} />
-            {data.map((item, idx) => {
+            <LeftArrow onClick={prevSlide}>&lt;</LeftArrow>
+            {data.map((item, index) => {
                 return (
-                    <ReviewCard
-                        info={item}
-                        key={idx}
-                        hidden={slide === idx ? {} : { display: 'none' }} //i dont like this but i'll fix it later
-                    ></ReviewCard>
+                    <div key={index}>
+                        <ReviewCard
+                            info={item}
+                            hidden={
+                                slide === index || slide + 1 === index ? {} : { display: 'none' }
+                            }
+                        ></ReviewCard>
+                    </div>
                 );
             })}
-            <RightArrow onClick={nextSlide} />
+            <RightArrow onClick={nextSlide}>&gt;</RightArrow>
             <Indicators>
-                {data.map((_, idx) => {
+                {data.map((_, index) => {
                     return (
                         <Indicator
-                            key={idx}
-                            style={slide === idx ? {} : { backgroundColor: 'grey' }}
-                            onClick={() => setSlide(idx)}
+                            key={index}
+                            style={slide === index ? {} : { backgroundColor: 'grey' }}
+                            onClick={() => setSlide(index)}
                         ></Indicator>
                     );
                 })}
@@ -142,8 +149,6 @@ const StyledCarousel = styled(Carousel)`
     width: 550px;
     max-width: 80%;
     padding: 10px 10% 50px;
-    border-radius: 0.5rem;
-    box-shadow: 0px 0px 7px #666;
 `;
 
 const ReviewsSection = () => {

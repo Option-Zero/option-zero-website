@@ -1,9 +1,11 @@
 import React from 'react';
 
 import styled from '@emotion/styled';
-import { SectionBackground, SectionContent } from './Section.js';
+
 import { MAX_CONTENT_WIDTH } from '../Styles/Styles.js';
 import { GreenButton } from './Button.js';
+import ResponsiveAppBar from './NavBar.js';
+import { SectionBackground, SectionContent } from './Section.js';
 
 const Banner = styled(SectionBackground)`
     align-items: flex-start;
@@ -39,8 +41,8 @@ const HeaderContent = styled.div`
 const HeaderSection = () => {
     return (
         <Banner padding>
-            <HeaderContainer>
-                {/* <NavBar></NavBar> */}
+            <HeaderContainer column>
+                <ResponsiveAppBar />
                 <HeaderContent>
                     <h1>Modern software for climate tech</h1>
                     <p>

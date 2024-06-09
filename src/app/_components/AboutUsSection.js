@@ -1,13 +1,14 @@
 import React from 'react';
+
 import styled from '@emotion/styled';
-import { SectionBackground, SectionContent } from './Section.js';
-import { TransparentButton } from './Button.js';
+
 import { BREAKPOINTS } from '../Styles/Styles.js';
+import { TransparentButton } from './Button.js';
+import { SectionBackground, SectionContent } from './Section.js';
 
 const AboutUsSectionContent = styled(SectionContent)`
-    padding: 0 25px;
     justify-content: space-around;
-    gap: 100px;
+    gap: 20%;
     @media screen and (max-width: ${BREAKPOINTS.md}) {
         flex-wrap: wrap;
         justify-content: center;
@@ -15,28 +16,24 @@ const AboutUsSectionContent = styled(SectionContent)`
 `;
 
 const AboutUsText = styled.div`
+    max-width: 50%;
     @media screen and (max-width: ${BREAKPOINTS.md}) {
         justify-content: center;
-        min-width: 300px;
-        max-width: 450px;
-        width: auto;
+        max-width: 100%;
     }
 `;
 
-const JnJPortrait = styled.div`
-    display: block;
-    background-image: url('/2023_1_19_JasonandjamieportraitVegas-7.jpg');
-    background-position: 0 0;
-    background-size: cover;
-    background-attachment: scroll;
-    width: auto;
-    min-width: 200px;
-    max-width: 600px;
+const JnJPortrait = styled.img`
+    content: url('jnj-portrait.jpg');
+    position: relative;
+    width: 360px;
     height: auto;
-    min-height: 200px;
-    max-height: 400px;
+    max-width: 100%;
+    margin-bottom: 20px;
     &:hover {
-        background-image: url('/2023_1_19_JasonandjamieportraitVegas-11.jpg');
+        content: url('jnj-portrait-jumping.jpg');
+        width: 360px;
+        height: 240px;
     }
 `;
 
@@ -44,7 +41,7 @@ const AboutUsSection = () => {
     return (
         <SectionBackground padding style={{ backgroundColor: '#f0f1f2' }}>
             <AboutUsSectionContent>
-                <JnJPortrait />
+                <JnJPortrait alt="Jaime and Jason"></JnJPortrait>
                 <AboutUsText>
                     <h3> About Us </h3>
                     <p>

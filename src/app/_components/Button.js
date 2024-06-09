@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
-import { Dark_grey, Logo_green, Medium_grey } from '../Styles/Colors.js';
+
+import { Dark_grey, Logo_green } from '../Styles/Colors.js';
 
 const Button = styled.button`
     letter-spacing: 2px;
@@ -21,7 +22,7 @@ export const GreenButton = styled(Button)`
         background-color: ${Dark_grey};
     }
     &:active {
-        background-color: ${Medium_grey};
+        background-color: ${Logo_green};
     }
 `;
 
