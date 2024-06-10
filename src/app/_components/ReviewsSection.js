@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 
-import { BsArrowRightCircleFill } from 'react-icons/bs';
-
 import styled from '@emotion/styled';
 
 import { Medium_grey } from '../Styles/Colors';
@@ -61,7 +59,7 @@ const ArrowStyles = `
     width: 3rem; 
     height: 3rem; 
     top: 8rem;
-    @media (max-width: ${BREAKPOINTS.sm}){
+    @media (max-width: ${BREAKPOINTS.xs}){
         width: 1.5rem;
         height: 1.5rem;
     }
@@ -113,14 +111,11 @@ const Carousel = ({ data, className }) => {
             <LeftArrow onClick={prevSlide}>&lt;</LeftArrow>
             {data.map((item, index) => {
                 return (
-                    <div key={index}>
-                        <ReviewCard
-                            info={item}
-                            hidden={
-                                slide === index || slide + 1 === index ? {} : { display: 'none' }
-                            }
-                        ></ReviewCard>
-                    </div>
+                    <ReviewCard
+                        key={index}
+                        info={item}
+                        hidden={slide === index ? {} : { display: 'none' }}
+                    ></ReviewCard>
                 );
             })}
             <RightArrow onClick={nextSlide}>&gt;</RightArrow>

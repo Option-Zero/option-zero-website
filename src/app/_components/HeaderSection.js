@@ -2,19 +2,11 @@ import React from 'react';
 
 import styled from '@emotion/styled';
 
-import { MAX_CONTENT_WIDTH } from '../Styles/Styles.js';
 import { GreenButton } from './Button.js';
-import ResponsiveAppBar from './NavBar.js';
+import ResponsiveAppBar from './AppBar.js';
 import { SectionBackground, SectionContent } from './Section.js';
 
 const Banner = styled(SectionBackground)`
-    align-items: flex-start;
-    justify-content: flex-start;
-    @media screen and (max-width: ${MAX_CONTENT_WIDTH}px) {
-        align-items: center;
-    }
-    min-height: 0px;
-    width: 100%;
     background-image: url('/HeaderBackground.png');
     background-position: 50% 80%;
     background-clip: border-box;
@@ -24,7 +16,6 @@ const Banner = styled(SectionBackground)`
 const HeaderContainer = styled(SectionContent)`
     justify-content: flex-start;
     align-items: flex-start;
-    min-width: 0;
 `;
 
 const HeaderContent = styled.div`

@@ -46,38 +46,16 @@ h4 {
   line-height: 30px;
 }
 
+h5{
+  font-weight: 300;
+  font-size: 17px;
+  line-height: 26px;
+  margin-bottom: 24px;
+}
+
 p {
   font-weight: 300;
   font-size: 15px;
   line-height: 26px;
   margin-bottom: 24px;
-}
-
-/* .slick-slider div {
-  display: flex;
-} */
-
-.slick-arrow.slick-next,
-.slick-arrow.slick-prev {
-  padding: 5px;
-  background: transparent;
-  height: 30px;
-  width: 30px;
-  border-radius: 50%;
-  transition: all 0.2s linear;
-  opacity: 0.8;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.slick-arrow.slick-next:hover,
-.slick-arrow.slick-prev:hover {
-    background-color: #f0f1f2; /* light grey */
-    opacity:1;
-}
-
-/* disables default arrows */
-.slick-prev::before,.slick-next::before {
-  display:none;
 }

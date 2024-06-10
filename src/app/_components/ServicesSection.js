@@ -3,53 +3,8 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { SectionContent } from './Section.js';
 import { GreenButton } from './Button.js';
-import { MAX_CONTENT_WIDTH } from '../Styles/Styles.js';
+import { BREAKPOINTS, MAX_CONTENT_WIDTH } from '../Styles/Styles.js';
 import { Medium_grey } from '../Styles/Colors.js';
-
-const ServiceCardDescription = styled.p`
-    color: ${Medium_grey};
-    margin-bottom: 10px;
-`;
-
-const ServiceCard = ({ className, title, description, icon }) => {
-    return (
-        <div className={className}>
-            <img src={icon} alt={icon} />
-            <h4>{title}</h4>
-            <ServiceCardDescription>{description}</ServiceCardDescription>
-        </div>
-    );
-};
-
-// thinking about adding a middle breakpoint to either fit 4 across or switch to 2x2 early
-// it looks weird with 3 and 1
-const StyledServiceCard = styled(ServiceCard)`
-    width: 275px;
-    height: 325px;
-    min-height: 0;
-    min-width: 0;
-    @media (max-width: 750px) {
-        width: auto;
-        height: auto;
-    }
-    box-sizing: border-box;
-    border: 1px solid rgba(100, 111, 121, 0.12);
-    border-radius: 12px;
-    margin: 10px;
-    padding: 20px;
-`;
-
-const ServiceCardContainer = styled(SectionContent)`
-    flex-wrap: wrap;
-    margin-top: 20px;
-    margin-bottom: 40px;
-`;
-
-const ServicesSectionDescription = styled.p`
-    text-align: center;
-    max-width: ${MAX_CONTENT_WIDTH * 0.5}px;
-    font-weight: 400;
-`;
 
 const SERVICES = [
     {
@@ -78,9 +33,61 @@ const SERVICES = [
     },
 ];
 
+const ServiceCardDescription = styled.p`
+    color: ${Medium_grey};
+    margin-bottom: 10px;
+`;
+
+const ServiceCard = ({ className, title, description, icon }) => {
+    return (
+        <div className={className}>
+            <img src={icon} alt={icon} />
+            <h4>{title}</h4>
+            <ServiceCardDescription>{description}</ServiceCardDescription>
+        </div>
+    );
+};
+
+const cardMargin = 10;
+const cardWidth = (MAX_CONTENT_WIDTH - cardMargin * 2 * SERVICES.length) / SERVICES.length;
+const twoCardWidth = (cardWidth + cardMargin * 2) * 2;
+
+const StyledServiceCard = styled(ServiceCard)`
+    height: 325px;
+    width: ${cardWidth}px;
+    min-height: 0;
+    min-width: 0;
+    box-sizing: border-box;
+    border: 1px solid rgba(100, 111, 121, 0.12);
+    border-radius: 12px;
+    margin: ${cardMargin}px;
+    padding: 20px;
+    @media (max-width: ${BREAKPOINTS.sm}) {
+        width: auto;
+        height: auto;
+    }
+`;
+
+const ServiceCardContainer = styled(SectionContent)`
+    flex-wrap: wrap;
+    width: auto;
+    @media (min-width: ${BREAKPOINTS.sm}) {
+        width: ${twoCardWidth}px;
+    }
+    @media (min-width: ${BREAKPOINTS.xl}) {
+        width: auto;
+    }
+`;
+
+const ServicesSectionDescription = styled.p`
+    text-align: center;
+    max-width: ${MAX_CONTENT_WIDTH * 0.5}px;
+    font-weight: 400;
+`;
+
 const ServicesSection = () => {
     return (
-        <SectionContent column padding>
+        <SectionContent id="services" column padding>
             <h3> What We Do </h3>
             <ServicesSectionDescription>
                 We do software strategy, implementation, data foundations, and team-building for

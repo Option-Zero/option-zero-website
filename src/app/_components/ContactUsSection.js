@@ -3,7 +3,6 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { SectionBackground, SectionContent } from './Section.js';
 import { Dark_blue, Logo_green } from '../Styles/Colors.js';
-import { MAX_CONTENT_WIDTH } from '../Styles/Styles.js';
 import { GreenButton } from './Button.js';
 
 const SectionBackgroundGradient = styled(SectionBackground)`
@@ -11,16 +10,16 @@ const SectionBackgroundGradient = styled(SectionBackground)`
     background-image: radial-gradient(
         circle farthest-corner at 0% 0%,
         rgba(39, 211, 116, 0.3),
-        // ^ Logo_Green
         ${Dark_blue} 24%
     );
+    // rgba color above is Logo_Green
     filter: blur();
     background-size: auto, cover;
 `;
 
 const StyledSectionContent = styled(SectionContent)`
     align-items: flex-start;
-    max-width: ${MAX_CONTENT_WIDTH * 0.5};
+    justify-content: flex-start;
 `;
 
 const WhiteSubtitle = styled.p`
@@ -30,16 +29,24 @@ const WhiteSubtitle = styled.p`
 `;
 const ContactUsSection = () => {
     return (
-        <>
-            <SectionBackgroundGradient padding id="contact-section">
+        <SectionBackgroundGradient column id="contact-section">
+            <SectionBackground padding>
                 <StyledSectionContent column>
                     <h2 style={{ color: Logo_green }}> Have a project? </h2>
                     <h2 style={{ color: 'white' }}> Let's work together! </h2>
                     <WhiteSubtitle> We would love to hear from you! </WhiteSubtitle>
-                    <GreenButton style={{ marginTop: '40px' }}> [ Submit ] </GreenButton>
+                    <GreenButton style={{ marginTop: '30px' }}> [ Submit ] </GreenButton>
                 </StyledSectionContent>
-            </SectionBackgroundGradient>
-        </>
+                <StyledSectionContent style={{ marginTop: '80px' }}>
+                    <img
+                        src="/optionzero-logo.png"
+                        alt="option zero logo"
+                        width="150px"
+                        height="auto"
+                    />
+                </StyledSectionContent>
+            </SectionBackground>
+        </SectionBackgroundGradient>
     );
 };
 

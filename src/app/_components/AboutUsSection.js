@@ -8,10 +8,11 @@ import { SectionBackground, SectionContent } from './Section.js';
 
 const AboutUsSectionContent = styled(SectionContent)`
     justify-content: space-around;
-    gap: 20%;
+    gap: 10%;
     @media screen and (max-width: ${BREAKPOINTS.md}) {
         flex-wrap: wrap;
         justify-content: center;
+        max-width: 80%;
     }
 `;
 
@@ -32,14 +33,15 @@ const JnJPortrait = styled.img`
     margin-bottom: 20px;
     &:hover {
         content: url('jnj-portrait-jumping.jpg');
-        width: 360px;
-        height: 240px;
+    }
+    @media (min-width: ${BREAKPOINTS.md}) {
+        width: 450px;
     }
 `;
 
 const AboutUsSection = () => {
     return (
-        <SectionBackground padding style={{ backgroundColor: '#f0f1f2' }}>
+        <SectionBackground id="about-section" padding style={{ backgroundColor: '#f0f1f2' }}>
             <AboutUsSectionContent>
                 <JnJPortrait alt="Jaime and Jason"></JnJPortrait>
                 <AboutUsText>
@@ -50,7 +52,9 @@ const AboutUsSection = () => {
                         Option Zero, the software consultancy for climate companies & initiatives.
                     </p>
                     <p>If your mission is climate resilience, your mission is our mission.</p>
-                    <TransparentButton> [ Work With Us ]</TransparentButton>
+                    <TransparentButton as="a" href="#contact-section">
+                        [ Work With Us ]
+                    </TransparentButton>
                 </AboutUsText>
             </AboutUsSectionContent>
         </SectionBackground>
