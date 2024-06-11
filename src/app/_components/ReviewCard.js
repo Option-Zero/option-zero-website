@@ -20,10 +20,10 @@ const ReviewerInfoContainer = styled.div`
     display: flex;
     align-items: center;
     align-self: flex-end;
+    justify-content: center;
     height: auto;
     width: '100%',
     gap: 10px;
-    justify-content: center;
 `;
 
 const ReviewCardStyles = {
@@ -31,6 +31,8 @@ const ReviewCardStyles = {
     width: 'fit-content',
     maxWidth: '80%',
     height: '100%',
+    margin: '28px',
+    flexGrow: '2',
 };
 
 export const ReviewCard = ({ hidden, info }) => {
@@ -51,7 +53,7 @@ export const ReviewCard = ({ hidden, info }) => {
                     return <Portrait key={j} src={image} alt={info.name}></Portrait>;
                 })}
                 <ReviewerNameContainer>
-                    <h3 style={{ margin: 0 }}>{info.name}</h3>
+                    <h3 style={{ margin: 0, fontSize: '28px' }}>{info.name}</h3>
                     <p style={{ margin: 0 }}>{info.position}</p>
                 </ReviewerNameContainer>
             </ReviewerInfoContainer>

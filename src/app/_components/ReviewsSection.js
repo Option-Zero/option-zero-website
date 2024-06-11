@@ -15,6 +15,18 @@ const REVIEWS = [
         quote: '"We hired Option Zero to clean up our python data pipeline. They delivered exactly what I wanted - the codebase is less terrifying now! They required minimal oversight, operated as an independent unit, and communicated their work clearly and concisely."',
     },
     {
+        name: 'James Regulinski',
+        position: 'CTO, Carbon Collective',
+        portrait: ['reviewers/JamesRegulinski.jpeg'],
+        quote: '"Jaime and Jason are a stellar team. They were instrumental in building and running our highly collaborative team and kept us laser-focused on our top strategic priorities. If you want a team to help you figure out where you need to go and get you there fast, you want Jaime and Jason."',
+    },
+    {
+        name: 'Tom Abeles',
+        position: 'CEO, Uprope',
+        portrait: ['reviewers/TomAbeles.jpeg'],
+        quote: '"Jason is...perhaps the strongest developer I have worked with."',
+    },
+    {
         name: 'Shannon Bloemker',
         position: 'CEO, Energy Raven',
         portrait: ['reviewers/ShannonBloemker.jpeg'],
@@ -29,18 +41,6 @@ const REVIEWS = [
         rather they helped us create a road map for future development that give us as \
         founders confidence that we can navigate the growth and further development of our platform."',
     },
-    {
-        name: 'James Regulinski',
-        position: 'CTO, Carbon Collective',
-        portrait: ['reviewers/JamesRegulinski.jpeg'],
-        quote: '"Jaime and Jason are a stellar team. They were instrumental in building and running our highly collaborative team and kept us laser-focused on our top strategic priorities. If you want a team to help you figure out where you need to go and get you there fast, you want Jaime and Jason."',
-    },
-    {
-        name: 'Tom Abeles',
-        position: 'CEO, Uprope',
-        portrait: ['reviewers/TomAbeles.jpeg'],
-        quote: '"Jason is...perhaps the strongest developer I have worked with."',
-    },
 ];
 
 const StyledTitle = styled.h4`
@@ -49,7 +49,6 @@ const StyledTitle = styled.h4`
     padding-bottom: 30px;
 `;
 
-//fixed height relative to box
 const ArrowStyles = `
     background-color: transparent;
     font-size: 20px;
@@ -150,7 +149,12 @@ const ReviewsSection = () => {
     return (
         <SectionContent padding column>
             <StyledTitle>our clients say</StyledTitle>
-            <StyledCarousel data={REVIEWS} />
+            {/* <StyledCarousel data={REVIEWS} /> */}
+            <SectionContent style={{ alignItems: 'flex-start', flexWrap: 'wrap' }}>
+                {REVIEWS.map((item, index) => {
+                    return <ReviewCard key={index} info={item}></ReviewCard>;
+                })}
+            </SectionContent>
         </SectionContent>
     );
 };

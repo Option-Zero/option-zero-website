@@ -53,8 +53,8 @@ const cardWidth = (MAX_CONTENT_WIDTH - cardMargin * 2 * SERVICES.length) / SERVI
 const twoCardWidth = (cardWidth + cardMargin * 2) * 2;
 
 const StyledServiceCard = styled(ServiceCard)`
-    height: 325px;
-    width: ${cardWidth}px;
+    width: auto;
+    height: auto;
     min-height: 0;
     min-width: 0;
     box-sizing: border-box;
@@ -62,15 +62,16 @@ const StyledServiceCard = styled(ServiceCard)`
     border-radius: 12px;
     margin: ${cardMargin}px;
     padding: 20px;
-    @media (max-width: ${BREAKPOINTS.sm}) {
-        width: auto;
-        height: auto;
+    @media (min-width: ${BREAKPOINTS.sm}) {
+        height: 325px;
+        width: ${cardWidth}px;
     }
 `;
 
 const ServiceCardContainer = styled(SectionContent)`
     flex-wrap: wrap;
     width: auto;
+    margin-bottom: 20px;
     @media (min-width: ${BREAKPOINTS.sm}) {
         width: ${twoCardWidth}px;
     }
@@ -87,7 +88,7 @@ const ServicesSectionDescription = styled.p`
 
 const ServicesSection = () => {
     return (
-        <SectionContent id="services" column padding>
+        <SectionContent id="services-section" column padding>
             <h3> What We Do </h3>
             <ServicesSectionDescription>
                 We do software strategy, implementation, data foundations, and team-building for
