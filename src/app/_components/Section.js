@@ -11,8 +11,13 @@ export const SectionContent = styled.div((props) => ({
     display: 'flex',
     flexDirection: props.column && 'column',
     padding: props.padding ? SECTION_PADDING : 0,
-    justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: props.leftAlign ? 'flex-start' : 'center',
+    justifyContent: props.leftJustify ? 'flex-start' : 'center',
     margin: 'auto',
     maxWidth: MAX_CONTENT_WIDTH,
+}));
+
+export const SectionGap = styled.div((props) => ({
+    height: props.height,
+    width: props.width,
 }));

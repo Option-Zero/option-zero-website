@@ -13,7 +13,6 @@ const Header2 = styled.div`
     font-size: 50px;
     font-weight: 500;
     line-height: 62px;
-    margin: 0;
 `;
 
 const Header3 = styled.div`
