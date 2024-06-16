@@ -4,6 +4,7 @@ import styled from '@emotion/styled';
 import { Box, Grid } from '@mui/material';
 import { Medium_grey } from '../Styles/Colors';
 import { SectionBackground, SectionContent } from './Section';
+import { Header4 } from '../Styles/Typography';
 
 const CLIENTLOGOS = [
     { filename: 'logos/COMMONS-logo.png', alt: 'Commons logo' },
@@ -38,12 +39,16 @@ const StyledLogo = styled(Logo)`
     opacity: 0.5;
 `;
 
-const StyledTitle = styled.h4`
+const StyledTitle = styled(Header4)`
     color: ${Medium_grey};
     text-transform: uppercase;
     padding-bottom: 30px;
 `;
 
+// To change the layout of the items in the grid, look for
+// e.g. `item xs={6} sm={4} lg={3}`
+// The xs, sm, lg represent the width of the screen
+// The value represents the number of columns out of 12 that each item should take up
 const LogoGrid = (logos) => {
     return (
         <Grid container spacing={2} justifyContent="center" alignItems="center">
@@ -58,10 +63,6 @@ const LogoGrid = (logos) => {
     );
 };
 
-// To change the layout of the items in the grid, look for
-// e.g. `item xs={6} sm={4} lg={3}`
-// The xs, sm, lg represent the width of the screen
-// The value represents the number of columns out of 12 that each item should take up
 const LogosSection = () => {
     return (
         <SectionBackground>

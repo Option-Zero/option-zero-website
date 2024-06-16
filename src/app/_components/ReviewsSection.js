@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import styled from '@emotion/styled';
 
 import { Medium_grey } from '../Styles/Colors';
-import { BREAKPOINTS } from '../Styles/Styles';
 import { ReviewCard } from './ReviewCard';
 import { SectionContent } from './Section';
+import { Header4 } from '../Styles/Typography';
 
 const REVIEWS = [
     {
@@ -43,111 +43,15 @@ const REVIEWS = [
     },
 ];
 
-const StyledTitle = styled.h4`
+const StyledTitle = styled(Header4)`
     color: ${Medium_grey};
     text-transform: uppercase;
     padding-bottom: 30px;
 `;
 
-const ArrowStyles = `
-    background-color: transparent;
-    font-size: 20px;
-    position: absolute;
-    border: none;
-    border-radius: 50%;
-    width: 3rem; 
-    height: 3rem; 
-    top: 8rem;
-    @media (max-width: ${BREAKPOINTS.xs}){
-        width: 1.5rem;
-        height: 1.5rem;
-    }
-    &:hover{
-        cursor: pointer;
-    }`;
-
-const LeftArrow = styled.button`
-    ${ArrowStyles}
-    left: 1rem;
-`;
-
-const RightArrow = styled.button`
-    ${ArrowStyles}
-    right: 1rem;
-`;
-
-const Indicators = styled.div`
-    display: flex;
-    position: absolute;
-    bottom: 1rem;
-`;
-const Indicator = styled.button`
-    background-color: white;
-    height: 0.5rem;
-    width: 0.5rem;
-    border-radius: 100%;
-    outline: none;
-    border: none;
-    padding: 0;
-    box-shadow: 0px 0px 5px #555;
-    margin: 0 0.2rem;
-    cursor: pointer;
-`;
-
-const Carousel = ({ data, className }) => {
-    const [slide, setSlide] = useState(1);
-
-    const nextSlide = () => {
-        setSlide(slide === data.length - 1 ? 0 : slide + 1);
-    };
-
-    const prevSlide = () => {
-        setSlide(slide === 0 ? data.length - 1 : slide - 1);
-    };
-
-    return (
-        <div className={className}>
-            <LeftArrow onClick={prevSlide}>&lt;</LeftArrow>
-            {data.map((item, index) => {
-                return (
-                    <ReviewCard
-                        key={index}
-                        info={item}
-                        hidden={slide === index ? {} : { display: 'none' }}
-                    ></ReviewCard>
-                );
-            })}
-            <RightArrow onClick={nextSlide}>&gt;</RightArrow>
-            <Indicators>
-                {data.map((_, index) => {
-                    return (
-                        <Indicator
-                            key={index}
-                            style={slide === index ? {} : { backgroundColor: 'grey' }}
-                            onClick={() => setSlide(index)}
-                        ></Indicator>
-                    );
-                })}
-            </Indicators>
-        </div>
-    );
-};
-
-const StyledCarousel = styled(Carousel)`
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 300px;
-    max-height: fit-content;
-    width: 550px;
-    max-width: 80%;
-    padding: 10px 10% 50px;
-`;
-
 const ReviewsSection = () => {
     return (
-        <SectionContent padding column>
+        <SectionContent id="reviews-section" padding column>
             <StyledTitle>our clients say</StyledTitle>
             {/* <StyledCarousel data={REVIEWS} /> */}
             <SectionContent style={{ alignItems: 'flex-start', flexWrap: 'wrap' }}>

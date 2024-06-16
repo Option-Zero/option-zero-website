@@ -2,28 +2,24 @@ import * as React from 'react';
 import styled from '@emotion/styled';
 
 import MenuIcon from '@mui/icons-material/Menu';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
+import Link from 'next/link';
+import { AppBar, Box, Button, Menu, MenuItem, Toolbar, Typography } from '@mui/material';
+import { OptionZeroLogo } from './Logo';
 
 const menuItems = [
-    { title: 'Services', anchor: '#service-section' },
+    { title: 'Services', anchor: '#services-section' },
     { title: 'About Us', anchor: '#about-section' },
-    { title: 'Reviews', anchor: '#review-section' },
+    { title: 'Reviews', anchor: '#reviews-section' },
 ];
 
-const HamburgerMenu = styled.button`
+const StyledMenu = styled.button`
     display: flex;
     border: 0;
     color: white;
     background-color: transparent;
 `;
 
-function ResponsiveAppBar() {
+const HamburgerMenu = () => {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
 
     const handleOpenNavMenu = (event) => {
@@ -35,6 +31,69 @@ function ResponsiveAppBar() {
     };
 
     return (
+        <Box
+            sx={{
+                flexGrow: 1,
+                display: { xs: 'flex', md: 'none' },
+                justifyContent: 'flex-end',
+            }}
+        >
+            <StyledMenu onClick={handleOpenNavMenu}>
+                <MenuIcon />
+            </StyledMenu>
+            <Menu
+                id="menu-appbar"
+                anchorEl={anchorElNav}
+                anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'left',
+                }}
+                keepMounted
+                transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'left',
+                }}
+                open={Boolean(anchorElNav)}
+                onClose={handleCloseNavMenu}
+                sx={{
+                    display: { xs: 'block', md: 'none' },
+                }}
+            >
+                {menuItems.map((item) => (
+                    <MenuItem key={item} onClick={handleCloseNavMenu}>
+                        <Link href={item.anchor}>
+                            <Typography textAlign="center">{item.title}</Typography>
+                        </Link>
+                    </MenuItem>
+                ))}
+            </Menu>
+        </Box>
+    );
+};
+const ExpandedMenu = () => {
+    return (
+        <Box
+            sx={{
+                flexGrow: 1,
+                display: { xs: 'none', md: 'flex' },
+                justifyContent: 'flex-end',
+            }}
+        >
+            {menuItems.map((item) => (
+                <Link style={{ textDecoration: 'none' }} href={item.anchor} key={item}>
+                    <Button
+                        sx={{ my: 2, color: 'white', display: 'block', textDecoration: 'none' }}
+                    >
+                        {item.title}
+                    </Button>
+                </Link>
+            ))}
+        </Box>
+    );
+};
+
+function ResponsiveAppBar() {
+    return (
         <AppBar
             position="static"
             sx={{
@@ -43,67 +102,10 @@ function ResponsiveAppBar() {
                 boxShadow: 'none',
             }}
         >
-            <Toolbar disableGutters sx={{ display: 'flex' }}>
-                <img
-                    src="/optionzero-logo.png"
-                    alt="option zero logo"
-                    width="150px"
-                    height="auto"
-                />
-                {/* hamburger button*/}
-                <Box
-                    sx={{
-                        flexGrow: 1,
-                        display: { xs: 'flex', md: 'none' },
-                        justifyContent: 'flex-end',
-                    }}
-                >
-                    <HamburgerMenu onClick={handleOpenNavMenu} style={{ color: 'white' }}>
-                        <MenuIcon />
-                    </HamburgerMenu>
-                    <Menu
-                        id="menu-appbar"
-                        anchorEl={anchorElNav}
-                        anchorOrigin={{
-                            vertical: 'bottom',
-                            horizontal: 'left',
-                        }}
-                        keepMounted
-                        transformOrigin={{
-                            vertical: 'top',
-                            horizontal: 'left',
-                        }}
-                        open={Boolean(anchorElNav)}
-                        onClose={handleCloseNavMenu}
-                        sx={{
-                            display: { xs: 'block', md: 'none' },
-                        }}
-                    >
-                        {menuItems.map((item) => (
-                            <MenuItem key={item} onClick={handleCloseNavMenu}>
-                                <Typography textAlign="center">{item.title}</Typography>
-                            </MenuItem>
-                        ))}
-                    </Menu>
-                </Box>
-                {/* expanded menu */}
-                <Box
-                    sx={{
-                        flexGrow: 1,
-                        display: { xs: 'none', md: 'flex' },
-                        justifyContent: 'flex-end',
-                    }}
-                >
-                    {menuItems.map((item) => (
-                        <Button
-                            key={item}
-                            onClick={handleCloseNavMenu}
-                            sx={{ my: 2, color: 'white', display: 'block' }}
-                        >
-                            {item.title}
-                        </Button>
-                    ))}
-                </Box>
+            <Toolbar disableGutters sx={{ display: 'flex', margin: '0 40px' }}>
+                <OptionZeroLogo />
+                <HamburgerMenu />
+                <ExpandedMenu />
             </Toolbar>
         </AppBar>
     );

@@ -1,6 +1,6 @@
 import React from 'react';
-
 import styled from '@emotion/styled';
+import { Header3, Paragraph } from '../Styles/Typography';
 
 const Portrait = styled.img`
     width: 60px;
@@ -20,7 +20,7 @@ const ReviewerInfoContainer = styled.div`
     display: flex;
     align-items: center;
     align-self: flex-end;
-    justify-content: center;
+    justify-content: flex-start;
     height: auto;
     width: '100%',
     gap: 10px;
@@ -38,7 +38,7 @@ const ReviewCardStyles = {
 export const ReviewCard = ({ hidden, info }) => {
     return (
         <div style={{ ...ReviewCardStyles, ...hidden }}>
-            <p
+            <Paragraph
                 style={{
                     fontStyle: 'italic',
                     textJustify: 'left',
@@ -47,14 +47,14 @@ export const ReviewCard = ({ hidden, info }) => {
                 }}
             >
                 {info.quote}
-            </p>
+            </Paragraph>
             <ReviewerInfoContainer>
                 {info.portrait.map((image, j) => {
                     return <Portrait key={j} src={image} alt={info.name}></Portrait>;
                 })}
                 <ReviewerNameContainer>
-                    <h3 style={{ margin: 0, fontSize: '28px' }}>{info.name}</h3>
-                    <p style={{ margin: 0 }}>{info.position}</p>
+                    <Header3 style={{ margin: 0, fontSize: '28px' }}>{info.name}</Header3>
+                    <Paragraph style={{ margin: 0 }}>{info.position}</Paragraph>
                 </ReviewerNameContainer>
             </ReviewerInfoContainer>
         </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 
 import styled from '@emotion/styled';
+import { Header3, Header4, Paragraph } from '../Styles/Typography.js';
 import { SectionContent } from './Section.js';
 import { GreenButton } from './Button.js';
 import { BREAKPOINTS, MAX_CONTENT_WIDTH } from '../Styles/Styles.js';
@@ -33,17 +34,12 @@ const SERVICES = [
     },
 ];
 
-const ServiceCardDescription = styled.p`
-    color: ${Medium_grey};
-    margin-bottom: 10px;
-`;
-
 const ServiceCard = ({ className, title, description, icon }) => {
     return (
         <div className={className}>
             <img src={icon} alt={icon} />
-            <h4>{title}</h4>
-            <ServiceCardDescription>{description}</ServiceCardDescription>
+            <Header4>{title}</Header4>
+            <Paragraph style={{ marginBottom: '10px' }}>{description}</Paragraph>
         </div>
     );
 };
@@ -80,7 +76,7 @@ const ServiceCardContainer = styled(SectionContent)`
     }
 `;
 
-const ServicesSectionDescription = styled.p`
+const ServicesSectionDescription = styled(Paragraph)`
     text-align: center;
     max-width: ${MAX_CONTENT_WIDTH * 0.5}px;
     font-weight: 400;
@@ -89,7 +85,7 @@ const ServicesSectionDescription = styled.p`
 const ServicesSection = () => {
     return (
         <SectionContent id="services-section" column padding>
-            <h3> What We Do </h3>
+            <Header3> What We Do </Header3>
             <ServicesSectionDescription>
                 We do software strategy, implementation, data foundations, and team-building for
                 companies making a difference on climate change

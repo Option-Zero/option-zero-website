@@ -1,9 +1,11 @@
 import React from 'react';
 
 import styled from '@emotion/styled';
+import { Header2 } from '../Styles/Typography.js';
 import { SectionBackground, SectionContent } from './Section.js';
 import { Dark_blue, Logo_green } from '../Styles/Colors.js';
 import { GreenButton } from './Button.js';
+import { OptionZeroLogo } from './Logo.js';
 
 const SectionBackgroundGradient = styled(SectionBackground)`
     background-color: ${Dark_blue};
@@ -32,18 +34,13 @@ const ContactUsSection = () => {
         <SectionBackgroundGradient column id="contact-section">
             <SectionBackground padding>
                 <StyledSectionContent column>
-                    <h2 style={{ color: Logo_green }}> Have a project? </h2>
-                    <h2 style={{ color: 'white' }}> Let's work together! </h2>
+                    <Header2 style={{ color: Logo_green }}> Have a project? </Header2>
+                    <Header2 style={{ color: 'white' }}> Let's work together! </Header2>
                     <WhiteSubtitle> We would love to hear from you! </WhiteSubtitle>
                     <GreenButton style={{ marginTop: '30px' }}> [ Submit ] </GreenButton>
                 </StyledSectionContent>
                 <StyledSectionContent style={{ marginTop: '80px' }}>
-                    <img
-                        src="/optionzero-logo.png"
-                        alt="option zero logo"
-                        width="150px"
-                        height="auto"
-                    />
+                    <OptionZeroLogo />
                 </StyledSectionContent>
             </SectionBackground>
         </SectionBackgroundGradient>

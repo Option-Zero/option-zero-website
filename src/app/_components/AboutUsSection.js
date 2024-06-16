@@ -1,7 +1,7 @@
 import React from 'react';
 
 import styled from '@emotion/styled';
-
+import { Header3, Paragraph } from '../Styles/Typography.js';
 import { BREAKPOINTS } from '../Styles/Styles.js';
 import { TransparentButton } from './Button.js';
 import { SectionBackground, SectionContent } from './Section.js';
@@ -43,15 +43,17 @@ const AboutUsSection = () => {
     return (
         <SectionBackground id="about-section" padding style={{ backgroundColor: '#f0f1f2' }}>
             <AboutUsSectionContent>
-                <JnJPortrait alt="Jaime and Jason"></JnJPortrait>
+                <JnJPortrait alt="Jaime and Jason" />
                 <AboutUsText>
-                    <h3> About Us </h3>
-                    <p>
+                    <Header3> About Us </Header3>
+                    <Paragraph>
                         We are Jason and Jaime Curtis, a husband and wife team. We've built on our
                         combined 20+ years of experience in software and climate solutions to launch
                         Option Zero, the software consultancy for climate companies & initiatives.
-                    </p>
-                    <p>If your mission is climate resilience, your mission is our mission.</p>
+                    </Paragraph>
+                    <Paragraph>
+                        If your mission is climate resilience, your mission is our mission.
+                    </Paragraph>
                     <TransparentButton as="a" href="#contact-section">
                         [ Work With Us ]
                     </TransparentButton>
