@@ -1,54 +1,46 @@
 import React from 'react';
 
 import styled from '@emotion/styled';
-import { AnchorButton, SectionBackground, SectionContent } from './SharedComponents.js';
-import { PAGE_WIDTH } from '../Styles/Styles.js';
+
+import { GreenButton } from './Button.js';
+import { Header1, Paragraph } from '../Styles/Typography.js';
+import ResponsiveAppBar from './AppBar.js';
+import { SectionBackground, SectionContent } from './Section.js';
+import { MAX_CONTENT_WIDTH } from '../Styles/Styles.js';
 
 const Banner = styled(SectionBackground)`
-    align-items: flex-start;
-    justify-content: flex-start;
-    @media screen and (max-width: ${PAGE_WIDTH}px) {
-        align-items: center;
-    }
-    min-height: 0px;
-    width: 100%;
     background-image: url('/HeaderBackground.png');
     background-position: 50% 80%;
     background-clip: border-box;
     background-size: cover;
 `;
 
-const HeaderContainer = styled(SectionContent)`
+const Header = styled(SectionContent)`
     justify-content: flex-start;
     align-items: flex-start;
-    min-width: 0;
-`;
-
-const HeaderContent = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    max-width: 695px;
-    width: 100%;
-    min-width: 0;
     color: white;
+    max-width: ${MAX_CONTENT_WIDTH * 0.5}px;
+    width: 100%;
+    margin: 0;
+    align-self: flex-start;
 `;
 
 const HeaderSection = () => {
     return (
-        <Banner padding>
-            <HeaderContainer>
-                {/* <NavBar></NavBar> */}
-                <HeaderContent>
-                    <h1>Modern software for climate tech</h1>
-                    <p>
+        <Banner>
+            <SectionContent column>
+                <ResponsiveAppBar />
+                <Header column padding>
+                    <Header1>Modern software for climate tech</Header1>
+                    <Paragraph>
                         We provide personalized, end-to-end software solutions and on-demand
                         consulting to power the next generation of climate tech
-                    </p>
-                    <AnchorButton> [Get Started] </AnchorButton>
-                </HeaderContent>
-            </HeaderContainer>
+                    </Paragraph>
+                    <GreenButton as="a" href="#contact-section">
+                        [Get Started]
+                    </GreenButton>
+                </Header>
+            </SectionContent>
         </Banner>
     );
 };

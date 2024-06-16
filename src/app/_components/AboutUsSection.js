@@ -1,69 +1,62 @@
 import React from 'react';
+
 import styled from '@emotion/styled';
-import { AnchorButton, SectionBackground, SectionContent } from './SharedComponents.js';
-import { Cream, Dark_grey, Logo_green } from '../Styles/Colors.js';
+import { Header3, Paragraph } from '../Styles/Typography.js';
 import { BREAKPOINTS } from '../Styles/Styles.js';
+import { TransparentButton } from './Button.js';
+import { SectionBackground, SectionContent } from './Section.js';
 
 const AboutUsSectionContent = styled(SectionContent)`
-    padding: 0 25px;
     justify-content: space-around;
-    gap: 100px;
+    gap: 10%;
     @media screen and (max-width: ${BREAKPOINTS.md}) {
         flex-wrap: wrap;
         justify-content: center;
+        max-width: 80%;
     }
 `;
 
 const AboutUsText = styled.div`
+    max-width: 50%;
     @media screen and (max-width: ${BREAKPOINTS.md}) {
         justify-content: center;
-        min-width: 300px;
-        max-width: 450px;
-        width: auto;
+        max-width: 100%;
     }
 `;
 
-const StyledAnchorButton = styled(AnchorButton)`
-    background-color: transparent;
-    color: ${Logo_green};
-    padding: 0;
-    &:hover {
-        color: ${Dark_grey};
-        background-color: ${Cream};
-    }
-`;
-
-const JnJPortrait = styled.div`
-    display: block;
-    background-image: url('/2023_1_19_JasonandjamieportraitVegas-7.jpg');
-    background-position: 0 0;
-    background-size: cover;
-    background-attachment: scroll;
-    width: auto;
-    min-width: 450px;
-    max-width: 600px;
+const JnJPortrait = styled.img`
+    content: url('jnj-portrait.jpg');
+    position: relative;
+    width: 360px;
     height: auto;
-    min-height: 300px;
-    max-height: 400px;
+    max-width: 100%;
+    margin-bottom: 20px;
     &:hover {
-        background-image: url('/2023_1_19_JasonandjamieportraitVegas-11.jpg');
+        content: url('jnj-portrait-jumping.jpg');
+    }
+    @media (min-width: ${BREAKPOINTS.md}) {
+        width: 450px;
     }
 `;
 
 const AboutUsSection = () => {
     return (
-        <SectionBackground padding style={{ backgroundColor: '#f0f1f2' }}>
+        <SectionBackground id="about-section" padding style={{ backgroundColor: '#f0f1f2' }}>
             <AboutUsSectionContent>
-                <JnJPortrait />
+                <JnJPortrait alt="Jaime and Jason" />
                 <AboutUsText>
-                    <h3> About Us </h3>
-                    <p>
+                    <Header3> About Us </Header3>
+                    <Paragraph>
                         We are Jason and Jaime Curtis, a husband and wife team. We've built on our
                         combined 20+ years of experience in software and climate solutions to launch
                         Option Zero, the software consultancy for climate companies & initiatives.
-                    </p>
-                    <p>If your mission is climate resilience, your mission is our mission.</p>
-                    <StyledAnchorButton> [ Work With Us ]</StyledAnchorButton>
+                    </Paragraph>
+                    <Paragraph>
+                        If your mission is climate resilience, your mission is our mission.
+                    </Paragraph>
+                    <TransparentButton as="a" href="#contact-section">
+                        [ Work With Us ]
+                    </TransparentButton>
                 </AboutUsText>
             </AboutUsSectionContent>
         </SectionBackground>

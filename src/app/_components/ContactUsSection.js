@@ -1,9 +1,11 @@
 import React from 'react';
 
 import styled from '@emotion/styled';
-import { AnchorButton, SectionBackground, SectionContent } from './SharedComponents.js';
+import { Header2, Header5 } from '../Styles/Typography.js';
+import { SectionBackground, SectionContent, SectionGap } from './Section.js';
 import { Dark_blue, Logo_green } from '../Styles/Colors.js';
-import { PAGE_WIDTH } from '../Styles/Styles.js';
+import { GreenButton } from './Button.js';
+import { OptionZeroLogo } from './Logo.js';
 
 const SectionBackgroundGradient = styled(SectionBackground)`
     background-color: ${Dark_blue};
@@ -12,32 +14,27 @@ const SectionBackgroundGradient = styled(SectionBackground)`
         rgba(39, 211, 116, 0.3),
         ${Dark_blue} 24%
     );
+    // rgba color above is Logo_Green
     filter: blur();
     background-size: auto, cover;
 `;
 
-const StyledSectionContent = styled(SectionContent)`
-    align-items: flex-start;
-    max-width: ${PAGE_WIDTH * 0.5};
-`;
-
-const WhiteSubtitle = styled.p`
-    color: white;
-    margin-top: 20px;
-    font-size: 17px;
-`;
 const ContactUsSection = () => {
     return (
-        <>
-            <SectionBackgroundGradient padding id="contact-section">
-                <StyledSectionContent column>
-                    <h2 style={{ color: Logo_green }}> Have a project? </h2>
-                    <h2 style={{ color: 'white' }}> Let's work together! </h2>
-                    <WhiteSubtitle> We would love to hear from you! </WhiteSubtitle>
-                    <AnchorButton style={{ marginTop: '40px' }}> [ Submit ] </AnchorButton>
-                </StyledSectionContent>
-            </SectionBackgroundGradient>
-        </>
+        <SectionBackgroundGradient column id="contact-section">
+            <SectionBackground padding>
+                <SectionContent column leftAlign>
+                    <Header2 style={{ color: Logo_green }}> Have a project? </Header2>
+                    <Header2 style={{ color: 'white' }}> Let's work together! </Header2>
+                    <Header5 style={{ color: 'white', marginTop: '20px' }}>
+                        We would love to hear from you!
+                    </Header5>
+                    <GreenButton> [ Submit ] </GreenButton>
+                    <SectionGap height="80px" />
+                    <OptionZeroLogo />
+                </SectionContent>
+            </SectionBackground>
+        </SectionBackgroundGradient>
     );
 };
 
