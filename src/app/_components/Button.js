@@ -13,24 +13,26 @@ const Button = styled.button`
     line-height: 20px;
     transition: all 0.2s;
     text-decoration: none;
+    -webkit-tap-highlight-color: rgba(50, 52, 58, 0.3); //Dark_grey
 `;
 
 export const GreenButton = styled(Button)`
     color: white;
     background-color: ${Logo_green};
-    &:hover {
-        background-color: ${Dark_grey};
-    }
-    &:active {
-        background-color: ${Logo_green};
+    @media (hover: hover) {
+        &:hover {
+            background-color: ${Dark_grey};
+        }
     }
 `;
 
 export const TransparentButton = styled(Button)`
     color: ${Logo_green};
     background-color: transparent;
-    padding: 0;
-    &:hover {
-        color: ${Dark_grey};
+    padding: 12px 0;
+    @media (hover: hover) {
+        &:hover {
+            color: ${Dark_grey};
+        }
     }
 `;

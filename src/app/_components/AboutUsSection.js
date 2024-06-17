@@ -9,7 +9,7 @@ import { SectionBackground, SectionContent } from './Section.js';
 const AboutUsSectionContent = styled(SectionContent)`
     justify-content: space-around;
     gap: 10%;
-    @media screen and (max-width: ${BREAKPOINTS.md}) {
+    @media screen and (max-width: ${BREAKPOINTS.lg}) {
         flex-wrap: wrap;
         justify-content: center;
         max-width: 80%;
@@ -18,7 +18,7 @@ const AboutUsSectionContent = styled(SectionContent)`
 
 const AboutUsText = styled.div`
     max-width: 50%;
-    @media screen and (max-width: ${BREAKPOINTS.md}) {
+    @media screen and (max-width: ${BREAKPOINTS.lg}) {
         justify-content: center;
         max-width: 100%;
     }
@@ -31,10 +31,12 @@ const JnJPortrait = styled.img`
     height: auto;
     max-width: 100%;
     margin-bottom: 20px;
-    &:hover {
-        content: url('jnj-portrait-jumping.jpg');
+    @media (hover: hover) {
+        &:hover {
+            content: url('jnj-portrait-jumping.jpg');
+        }
     }
-    @media (min-width: ${BREAKPOINTS.md}) {
+    @media (min-width: ${BREAKPOINTS.lg}) {
         width: 450px;
     }
 `;

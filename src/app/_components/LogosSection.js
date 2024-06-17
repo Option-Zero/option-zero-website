@@ -53,9 +53,9 @@ const LogoGrid = (logos) => {
     return (
         <Grid container spacing={2} justifyContent="center" alignItems="center">
             {logos.logos.map((logo, index) => (
-                <Grid item xs={6} sm={4} lg={3} key={index} justifyContent="center">
+                <Grid item key={index} xs={6} sm={4} lg={3} justifyContent="center">
                     <Box display="flex" justifyContent="center">
-                        <StyledLogo key={index} url={logo.filename} alt={logo.alt}></StyledLogo>
+                        <StyledLogo url={logo.filename} alt={logo.alt}></StyledLogo>
                     </Box>
                 </Grid>
             ))}

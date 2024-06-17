@@ -20,7 +20,6 @@ const Header = styled(SectionContent)`
     align-items: flex-start;
     color: white;
     max-width: ${MAX_CONTENT_WIDTH * 0.5}px;
-    width: 100%;
     margin: 0;
     align-self: flex-start;
 `;
