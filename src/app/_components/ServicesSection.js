@@ -7,6 +7,7 @@ import { GreenButton } from './Button.js';
 import { BREAKPOINTS, MAX_CONTENT_WIDTH } from '../Styles/Styles.js';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
+import Link from 'next/link.js';
 
 const SERVICES = [
     {
@@ -86,9 +87,9 @@ const ServicesSection = () => {
                 ))}
             </Grid>
             <SectionGap height="80px" />
-            <GreenButton as="a" href="#contact-section">
-                [ Work With Us ]
-            </GreenButton>
+            <Link href="#contact-section">
+                <GreenButton>[ Work With Us ]</GreenButton>
+            </Link>
         </SectionContent>
     );
 };

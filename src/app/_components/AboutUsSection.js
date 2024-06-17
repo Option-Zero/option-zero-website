@@ -5,6 +5,7 @@ import { Header3, Paragraph } from '../Styles/Typography.js';
 import { BREAKPOINTS } from '../Styles/Styles.js';
 import { TransparentButton } from './Button.js';
 import { SectionBackground, SectionContent } from './Section.js';
+import Link from 'next/link.js';
 
 const AboutUsSectionContent = styled(SectionContent)`
     justify-content: space-around;
@@ -56,9 +57,9 @@ const AboutUsSection = () => {
                     <Paragraph>
                         If your mission is climate resilience, your mission is our mission.
                     </Paragraph>
-                    <TransparentButton as="a" href="#contact-section">
-                        [ Work With Us ]
-                    </TransparentButton>
+                    <Link href="#contact-section">
+                        <TransparentButton>[ Work With Us ]</TransparentButton>
+                    </Link>
                 </AboutUsText>
             </AboutUsSectionContent>
         </SectionBackground>
