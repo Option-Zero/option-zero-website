@@ -26,7 +26,7 @@ const AboutUsText = styled.div`
 `;
 
 const JnJPortrait = styled.img`
-    content: url('jnj-portrait.jpg');
+    content: url('JnJ-portrait.jpg');
     position: relative;
     width: 360px;
     height: auto;
@@ -34,7 +34,7 @@ const JnJPortrait = styled.img`
     margin-bottom: 20px;
     @media (hover: hover) {
         &:hover {
-            content: url('jnj-portrait-jumping.jpg');
+            content: url('JnJ-portrait-jumping.jpg');
         }
     }
     @media (min-width: ${BREAKPOINTS.lg}) {
