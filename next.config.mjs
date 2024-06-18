@@ -14,6 +14,11 @@ const nextConfig = {
                 destination: 'https://calendly.com/option-zero/book',
                 permanent: false,
             },
+            {
+                source: '/sfc',
+                destination: 'https://www.terra.do/climate-change-courses/software-for-climate/',
+                permanent: false,
+            },
         ];
     },
 };
