@@ -31,7 +31,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-If pnpm complains, run 
+If pnpm complains that the installed pnpm version does not match the package-lock version, run:
 ```bash
 corepack install pnpm@*
 ```
