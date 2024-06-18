@@ -5,11 +5,12 @@ import { Header3, Paragraph } from '../Styles/Typography.js';
 import { BREAKPOINTS } from '../Styles/Styles.js';
 import { TransparentButton } from './Button.js';
 import { SectionBackground, SectionContent } from './Section.js';
+import Link from 'next/link.js';
 
 const AboutUsSectionContent = styled(SectionContent)`
     justify-content: space-around;
     gap: 10%;
-    @media screen and (max-width: ${BREAKPOINTS.md}) {
+    @media screen and (max-width: ${BREAKPOINTS.lg}) {
         flex-wrap: wrap;
         justify-content: center;
         max-width: 80%;
@@ -18,7 +19,7 @@ const AboutUsSectionContent = styled(SectionContent)`
 
 const AboutUsText = styled.div`
     max-width: 50%;
-    @media screen and (max-width: ${BREAKPOINTS.md}) {
+    @media screen and (max-width: ${BREAKPOINTS.lg}) {
         justify-content: center;
         max-width: 100%;
     }
@@ -31,10 +32,12 @@ const JnJPortrait = styled.img`
     height: auto;
     max-width: 100%;
     margin-bottom: 20px;
-    &:hover {
-        content: url('jnj-portrait-jumping.jpg');
+    @media (hover: hover) {
+        &:hover {
+            content: url('jnj-portrait-jumping.jpg');
+        }
     }
-    @media (min-width: ${BREAKPOINTS.md}) {
+    @media (min-width: ${BREAKPOINTS.lg}) {
         width: 450px;
     }
 `;
@@ -54,9 +57,9 @@ const AboutUsSection = () => {
                     <Paragraph>
                         If your mission is climate resilience, your mission is our mission.
                     </Paragraph>
-                    <TransparentButton as="a" href="#contact-section">
-                        [ Work With Us ]
-                    </TransparentButton>
+                    <Link href="#contact-section">
+                        <TransparentButton>[ Work With Us ]</TransparentButton>
+                    </Link>
                 </AboutUsText>
             </AboutUsSectionContent>
         </SectionBackground>

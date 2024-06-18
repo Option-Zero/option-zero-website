@@ -7,6 +7,7 @@ import { Header1, Paragraph } from '../Styles/Typography.js';
 import ResponsiveAppBar from './AppBar.js';
 import { SectionBackground, SectionContent } from './Section.js';
 import { MAX_CONTENT_WIDTH } from '../Styles/Styles.js';
+import Link from 'next/link.js';
 
 const Banner = styled(SectionBackground)`
     background-image: url('/HeaderBackground.png');
@@ -20,7 +21,6 @@ const Header = styled(SectionContent)`
     align-items: flex-start;
     color: white;
     max-width: ${MAX_CONTENT_WIDTH * 0.5}px;
-    width: 100%;
     margin: 0;
     align-self: flex-start;
 `;
@@ -36,9 +36,9 @@ const HeaderSection = () => {
                         We provide personalized, end-to-end software solutions and on-demand
                         consulting to power the next generation of climate tech
                     </Paragraph>
-                    <GreenButton as="a" href="#contact-section">
-                        [Get Started]
-                    </GreenButton>
+                    <Link href="#contact-section">
+                        <GreenButton>[Get Started]</GreenButton>
+                    </Link>
                 </Header>
             </SectionContent>
         </Banner>

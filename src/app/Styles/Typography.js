@@ -33,7 +33,7 @@ const Header5 = styled.div`
     font-weight: 300;
     font-size: 17px;
     line-height: 26px;
-    margin-bottom: 24px;
+    margin: 10px 0;
 `;
 
 const Paragraph = styled.div`

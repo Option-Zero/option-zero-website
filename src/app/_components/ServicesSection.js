@@ -2,10 +2,12 @@ import React from 'react';
 
 import styled from '@emotion/styled';
 import { Header3, Header4, Paragraph } from '../Styles/Typography.js';
-import { SectionContent } from './Section.js';
+import { SectionContent, SectionGap } from './Section.js';
 import { GreenButton } from './Button.js';
 import { BREAKPOINTS, MAX_CONTENT_WIDTH } from '../Styles/Styles.js';
-import { Medium_grey } from '../Styles/Colors.js';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import Link from 'next/link.js';
 
 const SERVICES = [
     {
@@ -44,35 +46,16 @@ const ServiceCard = ({ className, title, description, icon }) => {
     );
 };
 
-const cardMargin = 10;
-const cardWidth = (MAX_CONTENT_WIDTH - cardMargin * 2 * SERVICES.length) / SERVICES.length;
-const twoCardWidth = (cardWidth + cardMargin * 2) * 2;
-
 const StyledServiceCard = styled(ServiceCard)`
-    width: auto;
-    height: auto;
-    min-height: 0;
-    min-width: 0;
+    min-width: 280px;
+    margin: 10px;
+    height: 325px;
     box-sizing: border-box;
     border: 1px solid rgba(100, 111, 121, 0.12);
     border-radius: 12px;
-    margin: ${cardMargin}px;
     padding: 20px;
-    @media (min-width: ${BREAKPOINTS.sm}) {
-        height: 325px;
-        width: ${cardWidth}px;
-    }
-`;
-
-const ServiceCardContainer = styled(SectionContent)`
-    flex-wrap: wrap;
-    width: auto;
-    margin-bottom: 20px;
-    @media (min-width: ${BREAKPOINTS.sm}) {
-        width: ${twoCardWidth}px;
-    }
-    @media (min-width: ${BREAKPOINTS.xl}) {
-        width: auto;
+    @media (max-width: ${BREAKPOINTS.xl}) {
+        max-width: 400px;
     }
 `;
 
@@ -90,19 +73,23 @@ const ServicesSection = () => {
                 We do software strategy, implementation, data foundations, and team-building for
                 companies making a difference on climate change
             </ServicesSectionDescription>
-            <ServiceCardContainer>
+            <Grid container columnSpacing={10} rowSpacing={5} columns={8}>
                 {SERVICES.map((service, index) => (
-                    <StyledServiceCard
-                        key={index}
-                        title={service.title}
-                        description={service.description}
-                        icon={service.icon}
-                    ></StyledServiceCard>
+                    <Grid item key={index} xs={8} sm={4} lg={2} justifyContent="center">
+                        <Box display="flex" justifyContent="center">
+                            <StyledServiceCard
+                                title={service.title}
+                                description={service.description}
+                                icon={service.icon}
+                            ></StyledServiceCard>
+                        </Box>
+                    </Grid>
                 ))}
-            </ServiceCardContainer>
-            <GreenButton as="a" href="#contact-section">
-                [ Work With Us ]
-            </GreenButton>
+            </Grid>
+            <SectionGap height="80px" />
+            <Link href="#contact-section">
+                <GreenButton>[ Work With Us ]</GreenButton>
+            </Link>
         </SectionContent>
     );
 };
