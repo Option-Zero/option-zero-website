@@ -3,10 +3,10 @@ import styled from '@emotion/styled';
 
 import MenuIcon from '@mui/icons-material/Menu';
 import Link from 'next/link';
-import { AppBar, Box, Button, Menu, MenuItem, Toolbar, Typography } from '@mui/material';
+import { AppBar, Box, Button, Menu, MenuItem, Toolbar } from '@mui/material';
 import { OptionZeroLogo } from './Logo';
 
-const menuItems = [
+const navItems = [
     { title: 'Services', anchor: '#services-section' },
     { title: 'About Us', anchor: '#about-section' },
     { title: 'Reviews', anchor: '#reviews-section' },
@@ -19,7 +19,17 @@ const StyledMenu = styled.button`
     background-color: transparent;
 `;
 
-const HamburgerMenu = () => {
+const NavLink = ({ item, color }) => {
+    return (
+        <Link style={{ textDecoration: 'none' }} href={item.anchor} key={item}>
+            <Button sx={{ color: color, display: 'block', textDecoration: 'none' }}>
+                {item.title}
+            </Button>
+        </Link>
+    );
+};
+
+const HamburgerNavMenu = () => {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
 
     const handleOpenNavMenu = (event) => {
@@ -46,12 +56,12 @@ const HamburgerMenu = () => {
                 anchorEl={anchorElNav}
                 anchorOrigin={{
                     vertical: 'bottom',
-                    horizontal: 'left',
+                    horizontal: 'right',
                 }}
                 keepMounted
                 transformOrigin={{
                     vertical: 'top',
-                    horizontal: 'left',
+                    horizontal: 'right',
                 }}
                 open={Boolean(anchorElNav)}
                 onClose={handleCloseNavMenu}
@@ -59,18 +69,16 @@ const HamburgerMenu = () => {
                     display: { xs: 'block', md: 'none' },
                 }}
             >
-                {menuItems.map((item) => (
-                    <MenuItem key={item} onClick={handleCloseNavMenu}>
-                        <Link href={item.anchor}>
-                            <Typography textAlign="center">{item.title}</Typography>
-                        </Link>
+                {navItems.map((item) => (
+                    <MenuItem key={`hamburger-${item.title}`} onClick={handleCloseNavMenu}>
+                        <NavLink item={item} color={'black'} />
                     </MenuItem>
                 ))}
             </Menu>
         </Box>
     );
 };
-const ExpandedMenu = () => {
+const HorizontalNavBar = () => {
     return (
         <Box
             sx={{
@@ -79,14 +87,8 @@ const ExpandedMenu = () => {
                 justifyContent: 'flex-end',
             }}
         >
-            {menuItems.map((item) => (
-                <Link style={{ textDecoration: 'none' }} href={item.anchor} key={item}>
-                    <Button
-                        sx={{ my: 2, color: 'white', display: 'block', textDecoration: 'none' }}
-                    >
-                        {item.title}
-                    </Button>
-                </Link>
+            {navItems.map((item) => (
+                <NavLink key={item.title} item={item} color={'white'} />
             ))}
         </Box>
     );
@@ -104,8 +106,8 @@ function ResponsiveAppBar() {
         >
             <Toolbar disableGutters sx={{ display: 'flex', margin: '0 40px' }}>
                 <OptionZeroLogo />
-                <HamburgerMenu />
-                <ExpandedMenu />
+                <HamburgerNavMenu />
+                <HorizontalNavBar />
             </Toolbar>
         </AppBar>
     );
