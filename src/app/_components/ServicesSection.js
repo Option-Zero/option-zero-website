@@ -48,14 +48,13 @@ const ServiceCard = ({ className, title, description, icon }) => {
 
 const StyledServiceCard = styled(ServiceCard)`
     min-width: 280px;
-    margin: 10px;
     height: 325px;
     box-sizing: border-box;
     border: 1px solid rgba(100, 111, 121, 0.12);
     border-radius: 12px;
     padding: 20px;
     @media (max-width: ${BREAKPOINTS.xl}) {
-        max-width: 400px;
+        max-width: 600px;
     }
 `;
 
@@ -73,7 +72,7 @@ const ServicesSection = () => {
                 We do software strategy, implementation, data foundations, and team-building for
                 companies making a difference on climate change
             </ServicesSectionDescription>
-            <Grid container columnSpacing={10} rowSpacing={5} columns={8}>
+            <Grid container columnSpacing={5} rowSpacing={5} columns={8}>
                 {SERVICES.map((service, index) => (
                     <Grid item key={index} xs={8} sm={4} lg={2} justifyContent="center">
                         <Box display="flex" justifyContent="center">
