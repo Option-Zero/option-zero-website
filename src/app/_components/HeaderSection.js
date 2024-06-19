@@ -10,7 +10,7 @@ import { MAX_CONTENT_WIDTH } from '../Styles/Styles.js';
 import Link from 'next/link.js';
 
 const Banner = styled(SectionBackground)`
-    background-image: url('/HeaderBackground.png');
+    background-image: url('/HeaderBackground.jpg');
     background-position: 50% 80%;
     background-clip: border-box;
     background-size: cover;
