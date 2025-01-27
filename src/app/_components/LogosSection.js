@@ -12,9 +12,11 @@ const CLIENTLOGOS = [
     { filename: 'logos/Energy_Raven_Logo.jpg', alt: 'Energy Raven logo' },
     { filename: 'logos/Freight+Farms+Logo_Web-01.png', alt: 'Freight Farms logo' },
     { filename: 'logos/NYState-logo.png', alt: 'New York State logo' },
-    { filename: 'logos/power-dcity-logo.png', alt: 'Power-d City logo' },
     { filename: 'logos/CYLogo.png', alt: 'Carbon Yield logo' },
+    { filename: 'logos/INI-logo.png', alt: 'Important, Not Important logo' },
+    { filename: 'logos/LevelTenEnergy-logo.png', alt: 'LevelTen Energy logo' },
     { filename: 'logos/hitag-logo.png', alt: 'HiTag logo' },
+    { filename: 'logos/power-dcity-logo.png', alt: 'Power-d City logo' },
 ];
 
 const EMPLOYERLOGOS = [
