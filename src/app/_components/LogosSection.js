@@ -14,7 +14,7 @@ const CLIENTLOGOS = [
     { filename: 'logos/NYState-logo.png', alt: 'New York State logo' },
     { filename: 'logos/CYLogo.png', alt: 'Carbon Yield logo' },
     { filename: 'logos/INI-logo.png', alt: 'Important, Not Important logo' },
-    { filename: 'logos/LevelTenEnergy-logo.png', alt: 'LevelTen Energy logo' },
+    // { filename: 'logos/LevelTenEnergy-logo.png', alt: 'LevelTen Energy logo' }, // They're not actually our client unfortunately
     { filename: 'logos/hitag-logo.png', alt: 'HiTag logo' },
     { filename: 'logos/power-dcity-logo.png', alt: 'Power-d City logo' },
 ];
