@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
 
 const nextConfig = {
-
     async redirects() {
         return [
             {
@@ -11,7 +10,12 @@ const nextConfig = {
             },
             {
                 source: '/book',
-                destination: 'https://calendly.com/option-zero/book',
+                destination: 'https://calendar.app.google/XUJC9qDaSiQZW96C9',
+                permanent: false,
+            },
+            {
+                source: '/opendoorclimate',
+                destination: 'https://calendar.app.google/jjHdiNBGzv4vcriS9',
                 permanent: false,
             },
             {
