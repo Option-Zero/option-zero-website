@@ -14,8 +14,13 @@ const nextConfig = {
                 permanent: false,
             },
             {
+                source: '/book20',
+                destination: 'https://calendar.app.google/rFzSBc2TXePZq6UP6',
+                permanent: false,
+            },
+            {
                 source: '/opendoorclimate',
-                destination: 'https://calendar.app.google/jjHdiNBGzv4vcriS9',
+                destination: 'https://calendar.app.google/rFzSBc2TXePZq6UP6',
                 permanent: false,
             },
             {
