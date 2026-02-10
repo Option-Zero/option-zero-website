@@ -17,7 +17,8 @@ const CLIENTLOGOS = [
     // { filename: 'logos/LevelTenEnergy-logo.png', alt: 'LevelTen Energy logo' }, // They're not actually our client unfortunately
     { filename: 'logos/hitag-logo.png', alt: 'HiTag logo' },
     { filename: 'logos/power-dcity-logo.png', alt: 'Power-d City logo' },
-    { filename: 'logos/9Zero_Logo.webp', alt: '9Zero Climate Innovation Hub logo' },
+    { filename: 'logos/9zero-logo-horizontal.png', alt: '9Zero Climate Innovation Hub logo' },
+    { filename: 'logos/carbon-collective-logo-green.webp', alt: 'Carbon Collective logo' },
 ];
 
 const EMPLOYERLOGOS = [
