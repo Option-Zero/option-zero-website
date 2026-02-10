@@ -36,8 +36,8 @@ const Logo = ({ className, url, alt }) => {
 const StyledLogo = styled(Logo)`
     margin-bottom: 15px;
     width: 60%;
-    height: auto;
-    object-fit: cover;
+    max-height: 11em;
+    object-fit: contain;
     filter: grayscale(100%);
     opacity: 0.5;
 `;
