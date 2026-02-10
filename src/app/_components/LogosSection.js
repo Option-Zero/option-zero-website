@@ -19,6 +19,7 @@ const CLIENTLOGOS = [
     { filename: 'logos/power-dcity-logo.png', alt: 'Power-d City logo' },
     { filename: 'logos/9zero-logo-horizontal.png', alt: '9Zero Climate Innovation Hub logo' },
     { filename: 'logos/carbon-collective-logo-green.webp', alt: 'Carbon Collective logo' },
+    { filename: 'logos/interconnection-fyi-logo.png', alt: 'Interconnection.fyi logo' },
 ];
 
 const EMPLOYERLOGOS = [
