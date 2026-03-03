@@ -31,7 +31,7 @@ const CLIENTLOGOS = [
         name: 'Energy Raven',
         href: 'https://energyraven.com/',
         description:
-            'We built Raven\'s software foundation, equipping them to thrive independently as an AI-powered home energy analysis service.',
+            "We built Raven's software foundation, equipping them to thrive independently as an AI-powered home energy analysis service.",
     },
     {
         filename: 'logos/Freight+Farms+Logo_Web-01.png',
@@ -55,7 +55,7 @@ const CLIENTLOGOS = [
         name: 'Carbon Yield',
         href: 'https://carbon-yield.com/',
         description:
-            'We maintain and execute Carbon Yield\'s roadmap for platform growth in agricultural carbon markets.',
+            "We maintain and execute Carbon Yield's roadmap for platform growth in agricultural carbon markets.",
     },
     {
         filename: 'logos/INI-logo.png',
@@ -244,7 +244,6 @@ const popoverPaperStyles = {
     },
 };
 
-
 const LogoWithPopover = ({ logo }) => {
     const [anchorEl, setAnchorEl] = useState(null);
     const closeTimer = useRef(null);
@@ -309,10 +308,7 @@ const LogoWithPopover = ({ logo }) => {
                 disableEnforceFocus
                 sx={{ pointerEvents: 'none' }}
             >
-                <TooltipContent
-                    onMouseEnter={cancelTimers}
-                    onMouseLeave={handleDelayedClose}
-                >
+                <TooltipContent onMouseEnter={cancelTimers} onMouseLeave={handleDelayedClose}>
                     <TooltipName>{logo.name}</TooltipName>
                     {logo.description && (
                         <TooltipDescription>{logo.description}</TooltipDescription>
