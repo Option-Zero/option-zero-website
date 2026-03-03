@@ -1,9 +1,9 @@
 'use client';
 
-import React from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 
 import styled from '@emotion/styled';
-import { Box, Grid, Tooltip } from '@mui/material';
+import { Box, Grid, Popover } from '@mui/material';
 import { Dark_blue, Logo_green, Medium_grey } from '../Styles/Colors';
 import { SectionBackground, SectionContent } from './Section';
 import { Header4 } from '../Styles/Typography';
@@ -15,15 +15,15 @@ const CLIENTLOGOS = [
         name: 'Commons',
         href: 'https://www.thecommons.earth/',
         description:
-            'We cleaned up their Python data pipeline, delivering a less terrifying codebase with minimal oversight.',
+            'Commons helps consumers skip the greenwashing and make choices that are actually good for the environment. We audited and modernized their Python data pipeline, delivering a more robust and observable system.',
     },
     {
         filename: 'logos/doterra-logo.svg',
         alt: 'Terra.do logo',
         name: 'Terra.do',
-        href: 'https://www.terra.do/',
+        href: 'https://www.terra.do/climate-change-courses/software-for-climate/',
         description:
-            'A climate education platform on a mission to get 100 million people working on climate by 2030.',
+            'A climate education platform on a mission to get 100 million people working on climate by 2030. We build and maintain their Software for Climate course.',
     },
     {
         filename: 'logos/Energy_Raven_Logo.jpg',
@@ -31,7 +31,7 @@ const CLIENTLOGOS = [
         name: 'Energy Raven',
         href: 'https://energyraven.com/',
         description:
-            'We built their software foundation, equipping them to thrive independently as an AI-powered home energy analysis service.',
+            'We built Raven\'s software foundation, equipping them to thrive independently as an AI-powered home energy analysis service.',
     },
     {
         filename: 'logos/Freight+Farms+Logo_Web-01.png',
@@ -39,7 +39,7 @@ const CLIENTLOGOS = [
         name: 'Freight Farms',
         href: 'https://www.freightfarms.com/',
         description:
-            'A pioneer in container farming, manufacturing hydroponic systems inside freight containers for year-round local food production.',
+            'A pioneer in container farming, manufacturing hydroponic systems inside freight containers for year-round local food production. We built new data integrations for their system.',
     },
     {
         filename: 'logos/NYState-logo.png',
@@ -47,7 +47,7 @@ const CLIENTLOGOS = [
         name: 'NYSERDA',
         href: 'https://www.nyserda.ny.gov/',
         description:
-            "New York State's energy research authority, driving clean energy innovation and reducing fossil fuel reliance.",
+            "New York State's energy research authority, driving clean energy innovation and reducing fossil fuel reliance. We supported NYSERDA with a major data migration.",
     },
     {
         filename: 'logos/CYLogo.png',
@@ -55,7 +55,7 @@ const CLIENTLOGOS = [
         name: 'Carbon Yield',
         href: 'https://carbon-yield.com/',
         description:
-            'We tackled their complex data challenges and created a roadmap for platform growth in agricultural carbon markets.',
+            'We maintain and execute Carbon Yield\'s roadmap for platform growth in agricultural carbon markets.',
     },
     {
         filename: 'logos/INI-logo.png',
@@ -63,20 +63,21 @@ const CLIENTLOGOS = [
         name: 'Important, Not Important',
         href: 'https://www.importantnotimportant.com/',
         description:
-            'A newsletter and podcast covering the science news impacting humanity — from climate to health to AI ethics.',
+            'A newsletter and podcast covering the science news impacting humanity — from climate to health to AI ethics. We help INI with new product development.',
     },
     // { filename: 'logos/LevelTenEnergy-logo.png', alt: 'LevelTen Energy logo' }, // They're not actually our client unfortunately
     {
         filename: 'logos/hitag-logo.png',
         alt: 'HiTag logo',
         name: 'HiTag',
+        href: 'https://www.tunalab.org/',
         description:
-            'An innovative climate tech startup we partnered with on software development.',
+            'We support HiTag track tuna populations worldwide by building the software foundation for their citizen science contributors.',
     },
     {
         filename: 'logos/power-dcity-logo.png',
-        alt: 'Power-d City logo',
-        name: 'Power-d City',
+        alt: 'POWER-D City logo',
+        name: 'POWER-D City',
         href: 'https://www.power-d.city/',
         description:
             'A data analytics platform helping cities track progress toward their climate, energy, and sustainability goals.',
@@ -95,7 +96,7 @@ const CLIENTLOGOS = [
         name: 'Carbon Collective',
         href: 'https://www.carboncollective.co/',
         description:
-            'We helped build and run their team, keeping them laser-focused on strategic priorities as a climate-focused investment advisor.',
+            'We support Carbon Collective with their software needs as a climate-focused investment advisor.',
     },
     {
         filename: 'logos/interconnection-fyi-logo.png',
@@ -170,11 +171,11 @@ const StyledLogo = styled(LogoImage)`
     transition: all 0.3s ease;
 `;
 
-const LogoLink = styled.a`
+const LogoButton = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    text-decoration: none;
+    cursor: pointer;
     padding: 8px;
     border-radius: 8px;
     transition: all 0.3s ease;
@@ -188,6 +189,7 @@ const LogoLink = styled.a`
 
 const TooltipContent = styled.div`
     padding: 4px 0;
+    pointer-events: auto;
 `;
 
 const TooltipName = styled.div`
@@ -204,10 +206,25 @@ const TooltipDescription = styled.div`
     margin-bottom: 8px;
 `;
 
-const TooltipLink = styled.span`
+const PopoverLink = styled.a`
     font-size: 12px;
     font-weight: 500;
     color: ${Logo_green};
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
+`;
+
+/* Hidden link for SEO crawlers — visible <a> with href for each org */
+const SeoLink = styled.a`
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
 `;
 
 const StyledTitle = styled(Header4)`
@@ -216,55 +233,98 @@ const StyledTitle = styled(Header4)`
     padding-bottom: 30px;
 `;
 
-const tooltipStyles = {
-    tooltip: {
-        sx: {
-            backgroundColor: Dark_blue,
-            color: '#fff',
-            fontSize: '13px',
-            maxWidth: 280,
-            padding: '12px 16px',
-            borderRadius: '8px',
-            boxShadow: '0 4px 20px rgba(0,0,0,0.25)',
-            '& .MuiTooltip-arrow': {
-                color: Dark_blue,
-            },
-        },
+const popoverPaperStyles = {
+    sx: {
+        backgroundColor: Dark_blue,
+        color: '#fff',
+        maxWidth: 280,
+        padding: '12px 16px',
+        borderRadius: '8px',
+        boxShadow: '0 4px 20px rgba(0,0,0,0.25)',
     },
 };
 
-const LogoWithTooltip = ({ logo }) => {
-    const content = (
-        <TooltipContent>
-            <TooltipName>{logo.name}</TooltipName>
-            {logo.description && <TooltipDescription>{logo.description}</TooltipDescription>}
-            {logo.href && <TooltipLink>Visit {logo.name} &rarr;</TooltipLink>}
-        </TooltipContent>
-    );
 
-    const logoImg = <StyledLogo url={logo.filename} alt={logo.alt} />;
+const LogoWithPopover = ({ logo }) => {
+    const [anchorEl, setAnchorEl] = useState(null);
+    const closeTimer = useRef(null);
+    const openTimer = useRef(null);
+
+    const cancelTimers = useCallback(() => {
+        if (closeTimer.current) {
+            clearTimeout(closeTimer.current);
+            closeTimer.current = null;
+        }
+        if (openTimer.current) {
+            clearTimeout(openTimer.current);
+            openTimer.current = null;
+        }
+    }, []);
+
+    const handleOpen = (e) => {
+        cancelTimers();
+        setAnchorEl(e.currentTarget);
+    };
+
+    const handleHoverOpen = (e) => {
+        cancelTimers();
+        setAnchorEl(e.currentTarget);
+    };
+
+    const handleDelayedClose = useCallback(() => {
+        cancelTimers();
+        closeTimer.current = setTimeout(() => {
+            setAnchorEl(null);
+        }, 100);
+    }, [cancelTimers]);
+
+    const handleClose = () => {
+        cancelTimers();
+        setAnchorEl(null);
+    };
 
     return (
-        <Tooltip
-            title={content}
-            arrow
-            enterDelay={200}
-            leaveDelay={200}
-            componentsProps={tooltipStyles}
-        >
-            {logo.href ? (
-                <LogoLink
-                    href={logo.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`Visit ${logo.name}`}
+        <>
+            {logo.href && <SeoLink href={logo.href}>{logo.name}</SeoLink>}
+            <LogoButton
+                onClick={handleOpen}
+                onMouseEnter={handleHoverOpen}
+                onMouseLeave={handleDelayedClose}
+                role="button"
+                aria-label={logo.name}
+            >
+                <StyledLogo url={logo.filename} alt={logo.alt} />
+            </LogoButton>
+            <Popover
+                open={Boolean(anchorEl)}
+                anchorEl={anchorEl}
+                onClose={handleClose}
+                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                transformOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+                slotProps={{ paper: popoverPaperStyles }}
+                disableRestoreFocus
+                disableScrollLock
+                transitionDuration={0}
+                disableAutoFocus
+                disableEnforceFocus
+                sx={{ pointerEvents: 'none' }}
+            >
+                <TooltipContent
+                    onMouseEnter={cancelTimers}
+                    onMouseLeave={handleDelayedClose}
                 >
-                    {logoImg}
-                </LogoLink>
-            ) : (
-                <LogoLink as="div">{logoImg}</LogoLink>
-            )}
-        </Tooltip>
+                    <TooltipName>{logo.name}</TooltipName>
+                    {logo.description && (
+                        <TooltipDescription>{logo.description}</TooltipDescription>
+                    )}
+                    {logo.href && (
+                        <PopoverLink href={logo.href} target="_blank" rel="noopener noreferrer">
+                            Visit {logo.name} &rarr;
+                        </PopoverLink>
+                    )}
+                </TooltipContent>
+            </Popover>
+        </>
     );
 };
 
@@ -278,7 +338,7 @@ const LogoGrid = ({ logos }) => {
             {logos.map((logo, index) => (
                 <Grid item key={index} xs={6} sm={4} lg={3} justifyContent="center">
                     <Box display="flex" justifyContent="center">
-                        <LogoWithTooltip logo={logo} />
+                        <LogoWithPopover logo={logo} />
                     </Box>
                 </Grid>
             ))}
