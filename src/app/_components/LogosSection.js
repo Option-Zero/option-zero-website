@@ -88,7 +88,7 @@ const CLIENTLOGOS = [
         name: '9Zero',
         href: 'https://9zero.com/',
         description:
-            'A climate innovation hub and coworking community for founders, investors, and engineers driving climate action.',
+            'A climate innovation hub and coworking community for founders, investors, and engineers driving climate action. We help them build apps to enhance member connectivity.',
     },
     {
         filename: 'logos/carbon-collective-logo-green.webp',
